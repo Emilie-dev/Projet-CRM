@@ -1,6 +1,7 @@
 //web server
 var express = require('express');
 var app = express();
+
 var momentjs = require('moment');
  //var faker = require('faker');
 var nodefs = require('fs');
@@ -9,12 +10,21 @@ var expressValidator = require('express-validator');
 app.use(bp.urlencoded({ extended: false }))
 
 
+
 var obj=[];
 var json= JSON.stringify(obj);
 var dbCustomers= 'customers.json';
 var dbOrders = 'orders.json';
 var dbProducts= 'products.json';
+
+
+app.listen(3000, function(){
+	console.log('server ok');
+});
+
+
 app.listen(3000);
+
 
 //route 
 app.post('/customers', function(req, res){
