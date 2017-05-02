@@ -12,38 +12,69 @@ app.listen(3000, function(){
 
 //route 
 app.post('/customers', function(req, res){
-res.send('hello');
+	res.send('hello');
 });
 
-
-
-//route post-produits
-app.post('/products', function(req, res){
+//routeGetClients
+app.get('/customer/getAll', function(req, res){
+	res.send('/getClient');
 });
 
-//route post-commande
-app.post('/orders', function(req, res){
+app.post('/customers/update', function(){
+	res.send('/customers/update');
 });
 
 //route delete/suppr clients
 app.post('/customers/delete', function(req, res){
+	res.send('/customers/delete');
+});
+
+//routeGetProduit
+app.get('/products/getAll', function(req, res){
+	res.send('/products/getAll');
+});
+
+//route post-produits
+app.post('/products', function(req, res){
+	res.send('/products');
 });
 
 // route delete/suppr produits
 app.post('/products/delete', function(req, res){
-});
-
-app.post('/customers/update', function(){
-
-});
-
-app.post('/orders/update', function(){
-
+	res.send('/products/delete');
 });
 
 app.post('/products/update', function(){
-	
+	res.send('/products/update');
 });
+
+//route post-commande
+app.post('/orders', function(req, res){
+	res.send('/orders');
+});
+
+//routeGetCommandes
+app.get('/orders/getAll', function(req, res){
+	res.send('/orders/getAll');
+});
+
+app.post('/orders/update', function(){
+	res.send('/orders/update');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
