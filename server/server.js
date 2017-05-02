@@ -17,12 +17,12 @@ res.send('hello');
 
 app.post('/customers/update', function(){
 
-})
+});
 
 app.post('/orders/update', function(){
 
-})
+});
 
 app.post('/products/update', function(){
 	
-})
+});
