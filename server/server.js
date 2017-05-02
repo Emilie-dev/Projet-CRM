@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
  var momentjs = require('moment');
- //var faker = require('faker');
+ var faker = require('faker');
  var nodefs = require('fs');
  var bodyparser = require('body-parser');
 
