@@ -15,6 +15,24 @@ app.post('/customers', function(req, res){
 res.send('hello');
 });
 
+
+
+//route post-produits
+app.post('/products', function(req, res){
+});
+
+//route post-commande
+app.post('/orders', function(req, res){
+});
+
+//route delete/suppr clients
+app.post('/customers/delete', function(req, res){
+});
+
+// route delete/suppr produits
+app.post('/products/delete', function(req, res){
+});
+
 app.post('/customers/update', function(){
 
 });
@@ -24,5 +42,4 @@ app.post('/orders/update', function(){
 });
 
 app.post('/products/update', function(){
-	
 });
