@@ -1,4 +1,5 @@
-# structure du repertoires pour le
+# structure du repertoires pour le clients
+```
 ├── _README.md
 ├── _client/
 |   ├── _partie_clients/
@@ -25,12 +26,22 @@
 ├── server ??
 |
 └── index.html
+```
 
 
 
 # Convention de nommages (pour l'instant)
 
 * object client:
+	*	gender
+	*	firstName
+	*	name
+	*	birthdate
+	*	city
+	*	address
+	*	zipCode
+	*	phoneNumber
+	*	registrationDate
 
 
 
