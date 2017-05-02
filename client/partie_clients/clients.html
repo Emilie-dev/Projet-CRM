@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>CRM</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="../node_modules/tablesorter/dist/css/theme.default.min.css">	
 </head>
 <body>
 
@@ -21,43 +22,41 @@
 	<h2>FORMULAIRE A REMPLIR</h2>
 
 
-	<form action="" method="POST">
+	<form action="" method="">
 
 		<div>
-			<label for="gender">GENRE</label>
+			<label for="gender">TITRE</label>
 			<input id="gender" type="text" name="gender"/>
 
 			<label for="firtName">PRENOM</label>
-			<input id="firstName" type="text" name="firstName"/>
+			<input id="firstName" type="" name="firstName"/>
 
 			<label for="name">NOM</label>
-			<input id="name" type="text" name="name"/>
+			<input id="name" type="" name="name"/>
 		</div>
 
 		<div>
 			<label for="city">VILLE</label>
-			<input id="city" type="text" name="city"/>
+			<input id="city" type="" name="city"/>
 
-			<label for="address">ADRESSE</label>
-			<input id="address" type="text" name="address"/>
+			<label for="adress">ADRESSE</label>
+			<input id="adress" type="" name="adress"/>
 
-
-			<label for="birthdate">DATE DE NAISSANCE</label>
-			<input id="birthdate" type="text" name="birthdate"/>	
+			<label for="birthDate">DATE DE NAISSANCE</label>
+			<input id="birthDate" type="" name="birthDate"/>	
 		</div>
 		<div>
 			<label for="registrationDate">DATE D'INSCRIPTION</label>
-			<input id="registrationDate" type="text" name="registrationDate"/>
+			<input id="registrationDate" type="" name="registrationDate"/>
 
 		</div>
 		<div>
 
-
 			<label for="zipCode">CODE POSTAL</label>
-			<input id="zipCode" type="text" name="zipCode"/>
+			<input id="zipCode" type="" name="zipCode"/>
 
 			<label for="phoneNumber">N°TEL</label>
-			<input id="phoneNumber" type="text" name="phoneNumber"/>
+			<input id="phoneNumber" type="" name="phoneNumber"/>
 
 
 			<button type="submit">ENREGISTRER CLIENT</button>
@@ -65,8 +64,7 @@
 		</div>
 	</form>
 
-
-	<table>
+	<table id="customerTable" class="tablesorter">
 		<thead>
 			<tr>
 				<th>TITRE</th>
@@ -82,15 +80,15 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
+				<td>a</td>
+				<td>b</td>
+				<td>c</td>
+				<td>d</td>
+				<td>e</td>
+				<td>f</td>
+				<td>g</td>
+				<td>h</td>
+				<td>i</td>
 			</tr>
 		</tbody>
 	</table>
@@ -98,7 +96,8 @@
 	<footer>
 
 	</footer>
-	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
