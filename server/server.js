@@ -11,18 +11,18 @@ app.listen(3000, function(){
 });
 
 //route 
-app.post('/customers', function(req, res)){
+app.post('/customers', function(req, res){
 res.send('hello');
 });
 
-app.post('/customers/update', function()){
+app.post('/customers/update', function(){
 
-}
+})
 
-app.post('/orders/update', function()){
+app.post('/orders/update', function(){
 
-}
+})
 
-app.post('/products/update', function()){
+app.post('/products/update', function(){
 	
-}
+})
