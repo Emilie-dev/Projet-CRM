@@ -10,16 +10,11 @@ app.listen(3000, function(){
 	console.log('server ok');
 });
 
-//base de données
-var TableClient = {
-
-}
-
-
 //route 
-app.post('/customers', function(req, res){
+app.post('/customers', function(req, res)){
 res.send('hello');
 });
+
 
 //route post-produits
 app.post('/products', function(req, res){
@@ -36,3 +31,16 @@ app.post('/customers/delete', function(req, res){
 // route delete/suppr produits
 app.post('/products/delete', function(req, res){
 });
+
+app.post('/customers/update', function(){
+
+});
+
+app.post('/orders/update', function(){
+
+});
+
+app.post('/products/update', function(){
+	
+});
+
