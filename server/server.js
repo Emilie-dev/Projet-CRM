@@ -36,14 +36,15 @@ app.get('/customers', function(req, res){
 // Fake User
 var fakeCustomers = {
 	"gender": faker.name.prefix(),
-	"firstname": faker.name.firstName(),
+	"firstName": faker.name.firstName(),
 	"lastname": faker.name.lastName(),
  	"city": faker.address.city(),
  	"address": faker.address.streetAddress(),
  	"birthdate": faker.date.past(),
- 	"registrationDate": "",
+ 	"registrationDate": new date().getTime(),
  	"zipCode": faker.address.zipCode(),
  	"phoneNumber": faker.phone.phoneNumber(),
+
 };
 res.send(fakeCustomers);
 });
@@ -61,7 +62,7 @@ app.get('/customer/getAll', function(req, res){
 
 });
 
-app.post('/customers/update', function(){
+app.post('/customers/update', function(req, res){
 	res.send('/customers/update');
 });
 
