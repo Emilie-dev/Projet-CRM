@@ -11,9 +11,10 @@ app.listen(3000, function(){
 });
 
 //route 
-app.post('/customers', function(req, res)){
+app.post('/customers', function(req, res){
 res.send('hello');
 });
+
 
 
 //route post-produits
@@ -43,4 +44,7 @@ app.post('/orders/update', function(){
 app.post('/products/update', function(){
 	
 });
+
+
+
 
