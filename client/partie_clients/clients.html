@@ -10,7 +10,7 @@
 	<!-- HEADER -->
 	
 	<ul>
-		<li><img src="Admin.ico"></></li>
+		<li><img src="../Admin.ico"></></li>
 		<li><a href="default.asp">CLIENTS</a></li>
 		<li><a href="news.asp">PRODUITS</a></li>
 		<li><a href="contact.asp">COMMANDES</a></li>
@@ -21,37 +21,47 @@
 	<h2>FORMULAIRE A REMPLIR</h2>
 
 
-	<form action="" method="">
+	<form action="" method="POST">
 
 		<div>
-			<label for="Title">TITRE</label>
-			<input id="Title" type="text" name=""/>
+			<label for="gender">GENRE</label>
+			<input id="gender" type="text" name="gender"/>
 
 			<label for="firtName">PRENOM</label>
-			<input id="firstName" type="" name=""/>
+			<input id="firstName" type="text" name="firstName"/>
 
-			<label for="Name">NOM</label>
-			<input id="Name" type="" name=""/>
+			<label for="name">NOM</label>
+			<input id="name" type="text" name="name"/>
 		</div>
 
 		<div>
-			<label for="City">VILLE</label>
-			<input id="City" type="" name=""/>
+			<label for="city">VILLE</label>
+			<input id="city" type="text" name="city"/>
 
-			<label for="Address">ADRESSE</label>
-			<input id="Address" type="" name=""/>
+			<label for="address">ADRESSE</label>
+			<input id="address" type="text" name="address"/>
 
-			<label for="birthDate">NAISSANCE</label>
-			<input id="birthDate" type="" name=""/>	
+
+			<label for="birthdate">DATE DE NAISSANCE</label>
+			<input id="birthdate" type="text" name="birthdate"/>	
+		</div>
+		<div>
+			<label for="registrationDate">DATE D'INSCRIPTION</label>
+			<input id="registrationDate" type="text" name="registrationDate"/>
+
 		</div>
 		<div>
 
-			<label for="postalCode">CODE POSTAL</label>
-			<input id="postalCode" type="" name=""/>
+
+			<label for="zipCode">CODE POSTAL</label>
+			<input id="zipCode" type="text" name="zipCode"/>
 
 			<label for="phoneNumber">N°TEL</label>
-			<input id="phoneNumber" type="" name=""/>
+			<input id="phoneNumber" type="text" name="phoneNumber"/>
+
+
 			<button type="submit">ENREGISTRER CLIENT</button>
+
 		</div>
 	</form>
 
