@@ -2,11 +2,18 @@
 var express = require('express');
 var app = express();
 
+//var momentjs = require('moment');
+var faker = require('faker/locale/fr');
+var nodefs = require('fs');
+//var bodyparser = require('body-parser');
+
+
 var momentjs = require('moment');
  //var faker = require('faker');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
+
 
 
 
@@ -24,6 +31,26 @@ app.use(expressValidator());
 
 
 //route 
+
+app.get('/customers', function(req, res){
+// Fake User
+var fakeCustomers = {
+	"gender": faker.name.prefix(),
+	"firstname": faker.name.firstName(),
+	"lastname": faker.name.lastName(),
+ 	"city": faker.address.city(),
+ 	"address": faker.address.streetAddress(),
+ 	"birthdate": faker.date.past(),
+ 	"registrationDate": "",
+ 	"zipCode": faker.address.zipCode(),
+ 	"phoneNumber": faker.phone.phoneNumber(),
+};
+res.send(fakeCustomers);
+});
+
+//route post-produits
+app.post('/products', function(req, res){
+
 app.post('/customers', function(req, res){
 	res.send('hello');
 });
@@ -31,6 +58,7 @@ app.post('/customers', function(req, res){
 //routeGetClients
 app.get('/customer/getAll', function(req, res){
 	res.send('/getClient');
+
 });
 
 app.post('/customers/update', function(){
