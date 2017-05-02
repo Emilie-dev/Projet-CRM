@@ -1,3 +1,7 @@
+body{
+	margin: auto;
+}
+
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -39,21 +43,29 @@ h2 {
 }
 
 form {
-	margin: 0 auto;
-	width: 900px;
-	padding: 8px;
-	border: 1px solid black;
+	/*margin: auto;*/
+	width: 800px;
+	padding-top: 80px;
+	padding-bottom: 80px;
+	padding-right: 80px;
+	padding-left: 80px;
+	display: inline-flex;
+	margin-left: 148px;
+  	border:1px solid black;
     
 }
 
 label {
-	display: block;
-	width: 300px;
+	width: 150px;	
+	height: 15px;
+	display: inline-table;
+	text-align: left;
+	margin-top: 10px;
 }
 
 input {
 	font: 15px sans-serif;
-	width: 200px;
+	width: 250px;
 	height: 25px;
 	border: 1px solid black;
 }
@@ -67,4 +79,13 @@ th, td {
 	border:1px solid black;
 	width:5%;
 	text-align: center;
+}
+
+button{
+	margin-top: 28px;
+	margin-bottom: 28px;
+	height: 30px;
+	margin-left: 40px;
+
+
 }
