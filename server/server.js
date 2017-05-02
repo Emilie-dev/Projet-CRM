@@ -8,9 +8,7 @@ var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
 
 
-app.listen(3000, function(){
-	console.log('server ok');
-});
+app.listen(3000);
 
 //route 
 app.post('/customers', function(req, res){
