@@ -1,3 +1,43 @@
+# structure du repertoires pour le
+├── _README.md
+├── _client/
+|   ├── _partie_clients/
+|	|	├──_js/
+|	|	|  ├──_app.js
+|	|	├──_css/
+|	|	   ├──_style.css
+|	├── _partie_commandes
+|	|	├──_js/
+|	|	|  ├──_app.js
+|	|	├──_css/
+|	|	   ├──_style.css
+|	├── _partie_produits
+|	|	├──_js/
+|	|	|  ├──_app.js
+|	|	├──_css/
+|	|	   ├──_style.css
+|   ├── _index.html
+|	├── _js
+|   ├── _style.css
+|   └── Admin.ico
+|
+|
+├── server ??
+|
+└── index.html
+
+
+
+# Convention de nommages (pour l'instant)
+
+* object client:
+
+
+
+
+
+
+
 
 Cahier des charges pour la création d’un logiciel web de relation clientèle
 (CRM - Customer Relationship Management)
