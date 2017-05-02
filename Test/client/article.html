@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Customers</title>
+<link href="bootstrap.css" rel="stylesheet"/>	
+	<link rel="stylesheet" href="font-awesome.min.css"/>
+	<link href="style.css" rel="stylesheet"/>	
+</head>
+<body>
+<header>
+	
+</header>
+	<form id="addProduct" action="/products" method="post" onsubmit="return verifProductForm()">
+		<label for="PName">Name</label>
+		<input id="PName" type="text" name="Name" onblur="verifName(this)">
+		<label  for="PPrice">Price</label>
+		<input id="Price" type="number" name="Price" onblur="verifStock(this)">
+		<label for="PStock">Stock</label>
+		<input id="PStock" type="number" name="Stock" onblur="verifStock(this)">
+		<label for="PPlace">Place</label>
+		<input id="PPlace" type="text" name="Place" onblur="verifPlace(this)">
+		<label for="PDescription">Description</label>
+		<textarea id="PDescription" type="text" name="Description" onblur="verifDescription(this)"cols="30" rows="10"></textarea>
+		<label for="PHeight">Height</label>
+		<input id="PHeight" type="number" name="Height" onblur="verifHeight(this)">
+		<label for="PWeight">Weight</label>
+		<input id="PWeight" type="number" name="Weight" onblur="verifWeight(this)"> 
+		<label for="PRef">Reference</label>
+		<input id="PRef" type="text" name="Reference" onblur="verifReference(this)"> 
+		<input  type="submit">
+	</form>	
+<div>
+	<table>
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Price</td>
+			<td>Amount in stock</td>
+			<td>Place</td>
+			<td>Description</td>
+			<td>Height</td>
+			<td>Weight</td>
+			<td>Reference</td>
+		</tr>
+	</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+</div>
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+
+	<script src="js/app.js"></script>
+</body>
+</html>
