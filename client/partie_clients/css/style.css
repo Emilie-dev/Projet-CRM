@@ -44,38 +44,34 @@ h2 {
 
 form {
 	/*margin: auto;*/
-	width: 800px;
+	width: 672px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-right: 10px;
 	padding-left: 10px;
 	display: inline-flex;
-	margin-left: 220px;
-  	border:1px solid black;
-    
+	margin-left: 290px;
+  	border:1px solid black; 
 }
 
 label {
 	width: 150px;	
-	height: 15px;
-	display: inline-table;
-	text-align: left;
-	margin-top: 10px;
+	text-align: left
 }
 
 input {
 	font: 15px sans-serif;
-	width: 250px;
-	height: 25px;
+	width: 220px;
+	height: 20px;
 	border: 1px solid black;
 }
 
 table {
-	margin-top: 150px;
-	margin-bottom: 50px;
+	margin-top: 200px;
 	border-collapse:collapse;
 	width:100%;
 }
+
 th, td {
 	border:1px solid black;
 	width:5%;
@@ -83,12 +79,8 @@ th, td {
 }
 
 button{
-	margin-top: 28px;
-	margin-bottom: 28px;
-	height: 30px;
-	margin-left: 45px;
+	margin-top: 62px;
+	margin-bottom: 25px;
+	margin-left: 40px;
 	border-radius: 10px;
-	color: black;
-
-
 }
