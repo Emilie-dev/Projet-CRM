@@ -25,7 +25,8 @@ app.listen(3000, function(){
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
-
+app.use(expressValidator())
+app.use(bodyparser.json())
 
 
 
@@ -70,6 +71,7 @@ res.send(fakeCustomers);
 
 
 app.post('/customers', function(req, res){
+	
 	AddData(dbCustomers, req);
 
 });
@@ -131,24 +133,18 @@ app.post('/orders/update', function(req, res){
 // fs.writeFile sert a réecrire le fichier.
 function AddData(dir,req){
 
-	
 	req.checkBody('gender', 'Invalid gender').notEmpty();
 	req.checkBody('name', 'Invalid name').notEmpty();
-	req.checkBody('firstname', 'Invalid firstname').notEmpty();
+	req.checkBody('firstName', 'Invalid firstname').notEmpty();
 	req.checkBody('birthdate', 'Invalid birthdate').notEmpty();
 	req.checkBody('city', 'Invalid city').notEmpty();
 	req.checkBody('zipCode', 'Invalid zipCode').notEmpty();
-	req.checkBody('address', 'Invalid address').notEmpty();
+//	req.checkBody('address', 'Invalid address').notEmpty();
 	req.checkBody('phoneNumber', 'Invalid phoneNumber').notEmpty();
 
 
-	var errors = req.validationErrors();
-	if (errors)
-	{
-		console.log(errors);
-	}
-	else 
-	{
+	req.asyncValidationErrors().then(function(){
+	
 		var data = req.body;
 
 		var addCustomer= 
@@ -161,7 +157,7 @@ function AddData(dir,req){
 			"zipCode": data.zipCode,
 			"address" : data.address,
 			"phoneNumber" : data.phoneNumber,
-			"registrationDate" : now.format('MMMM Do YYYY'),
+//			"registrationDate" : now.format('MMMM Do YYYY'),
 		 };
 		nodefs.readFile(dir,function(err,data)
 		{
@@ -174,34 +170,9 @@ function AddData(dir,req){
 		 		if(err) throw err;
 		 	});
 		});
-
-	var data = req.body;
-	var addCustomer= {
-		"gender" : data.gender,
-	 	"name" : data.name,
-		"firstName" : data.firstName,
-		"birthdate" : data.birthdate,
-		"city": data.city,
-		"zipCode": data.zipCode,
-		"address" : data.address,
-		"phoneNumber" : data.phoneNumber,
-		"registrationDate" : now.format('MMMM Do YYYY'),
-	 	};
-	 nodefs.readFile(dir,function(err,data){
-
-	 
-
-	 	obj= JSON.parse(data);
-	 	if(err)throw err;		
-	 obj.push(addCustomer);
-		json=JSON.stringify(obj);
-	 nodefs.writeFile(dir,json, function(err){
-	 	if(err) throw err;
-	 });
-	 });
-
-	}
-
+	}, function(errors){
+		console.log(errors);
+	});
 }
 function AddDataOrders(dir,req){
 	var data = req.body;
