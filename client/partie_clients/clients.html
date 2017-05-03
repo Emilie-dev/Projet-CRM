@@ -26,37 +26,37 @@
 
 		<div>
 			<label for="gender">TITRE</label>
-			<input id="gender" type="text" name="gender"/>
+			<input id="gender" type="text" name="gender" onblur="verifGender(this)" />
 
 			<label for="firtName">PRENOM</label>
-			<input id="firstName" type="" name="firstName"/>
+			<input id="firstName" type="" name="firstName" onblur="verifFirstName(this)" />
 
 			<label for="name">NOM</label>
-			<input id="name" type="text" name="name"/>
+			<input id="name" type="text" name="name" onblur="verifName(this)" />
+
 		</div>
 
 		<div>
 			<label for="city">VILLE</label>
-			<input id="city" type="text" name="city"/>
+			<input id="city" type="text" name="city" onblur="verifCity(this)"/>
 
 			<label for="adress">ADRESSE</label>
-			<input id="adress" type="text" name="adress"/>
+			<input id="adress" type="text" name="adress" onblur="verifAdress(this)"/>	
 
 			<label for="birthDate">NAISSANCE</label>
-			<input id="birthDate" type="text" name="birthDate"/>	
+			<input id="birthDate" type="text" name="birthDate" onblur="verifBirthdate(this)"/>	
+
 		</div>
 
 		<div>
 
 			<label for="zipCode">CODE POSTAL</label>
-			<input id="zipCode" type="text" name="zipCode"/>
+			<input id="zipCode" type="text" name="zipCode" onblur="verifZipCode(this)" />
 
 			<label for="phoneNumber">N°TEL</label>
-			<input id="phoneNumber" type="text" name="phoneNumber"/>
-
-
+			<input id="phoneNumber" type="text" name="phoneNumber" onblur="verifPhoneNumber(this)" />
+		
 			<button type="submit">ENREGISTRER CLIENT</button>
-
 		</div>
 	</form>
 
@@ -92,8 +92,11 @@
 	<footer>
 
 	</footer>
-	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+
+	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+
 	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
+
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
