@@ -1,8 +1,8 @@
 
 body{
-	background-image:url("/home/verrecchia/Téléchargements/watersteel2.jpg");
+	background-image:url("res/watersteel2.jpg");
 	background-size: cover;
-	background-size: contain;
+
 	background-attachment: fixed;
 }
 	
