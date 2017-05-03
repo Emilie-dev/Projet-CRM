@@ -1,10 +1,12 @@
 
 function surligne(champ, erreur){
 
-   if(erreur)
+   if(erreur){
       champ.style.backgroundColor = "#fba";
-   else
+   }
+   else{
       champ.style.backgroundColor = "";
+   }
 }
 
 function verifGender(champ){
@@ -178,7 +180,8 @@ function recept(){
 	})
 };
 
-function load(tab){
-	for (i=0;i<tab.length;i++){
+   function load(tab){
+	  for (i=0;i<tab.length;i++){
 		
-};
+   }
+}
