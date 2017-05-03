@@ -1,8 +1,6 @@
 //--Web server
 var express = require('express');
 var app = express();
-
-
 var momentjs = require('moment');
 var faker = require('faker/locale/fr');
 var nodefs = require('fs');
@@ -10,14 +8,9 @@ var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
 
 
-
-
 app.listen(3000, function(){
 	console.log('server ok');
 });
-
-
-
 
 
 //-- Middleware
@@ -29,9 +22,6 @@ app.listen(3000, function(){
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
-
-
-
 
 
 var obj;
@@ -46,9 +36,11 @@ var dbProducts= 'products.json';
 
 
 
+
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
 //app.use(expressValidator());
+
 
 
 
@@ -58,7 +50,9 @@ app.use(bodyparser.urlencoded({ extended: false }));
 
 
 
+
 //--route pour customers 
+
 
 
 
@@ -173,34 +167,14 @@ function AddData(dir,req){
 	else 
 	{
 
+
 		
 
 		var data = req.body;
 
-		var addCustomer= 
-		{
-			"gender" : data.gender,
-		 	"name" : data.name,
-			"firstName" : data.firstName,
-			"birthdate" : data.birthdate,
-			"city": data.city,
-			"zipCode": data.zipCode,
-			"address" : data.address,
-			"phoneNumber" : data.phoneNumber,
-			"registrationDate" : now.format('MMMM Do YYYY'),
-		 };
-		 //node FS
-		nodefs.readFile(dir,function(err,data)
-		{
-		 	obj= JSON.parse(data);
-		 	if(err)throw err;		
-		 	obj.push(addCustomer);
-			json=JSON.stringify(obj);
-		 	nodefs.writeFile(dir,json, function(err)
-		 	{
-		 		if(err) throw err;
-		 	});
-		});
+
+		
+
 
 
 		
