@@ -25,7 +25,7 @@ app.listen(3000, function(){
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
-app.use(expressValidator());
+
 
 
 
@@ -54,8 +54,8 @@ var dbProducts= 'products.json';
 //route 
 
 
-app.get('/customers', function(req, res){
-
+app.post('/customers', function(req, res){
+//app.use(expressValidator(req.body);
 // Fake User
 var fakeCustomers = {
 	"gender": faker.name.prefix(),
@@ -93,7 +93,7 @@ app.post('/customers', function(req, res){
 
 //routeGetClients
 app.get('/customer/getAll', function(req, res){
-	fs.readFile('customers.json',function read(err,data){
+	nodefs.readFile('customers.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
