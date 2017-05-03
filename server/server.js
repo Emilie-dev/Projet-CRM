@@ -1,20 +1,20 @@
-//web server
+//--Web server
 var express = require('express');
 var app = express();
+
 
 //var momentjs = require('moment');
 var faker = require('faker/locale/fr');
 var nodefs = require('fs');
-//var bodyparser = require('body-parser');
-
-
-//var momentjs = require('moment');
-var faker = require('faker');
-var nodefs = require('fs');
 var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
 
-var dbCustomers ='customers.json';
+
+
+
+app.listen(3000, function(){
+	console.log('server ok');
+});
 
 
 
@@ -22,46 +22,60 @@ var dbCustomers ='customers.json';
 
 //-- Middleware
 
-app.use(bodyparser.urlencoded({ extended: false }));
-app.use(expressValidator());
-
-
-
-//route 
 
 app.use(express.static(__dirname + '/../client/'));
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(expressValidator());
+app.use(bodyparser.json());
 
-app.get('/customers', function(req, res){
-	// Fake User
+
+
+
+var obj;
+var orders;
+var products;
+var json= JSON.stringify(obj);
+var dbCustomers= 'customers.json';
+var dbOrders = 'orders.json';
+var dbProducts= 'products.json';
+
+
+
+
+
+
+
+//app.use(app.router);
+
+
+//--Route 
+
+
+app.post('/customers/fake', function(req, res){
+
+// Fake User
 	var fakeCustomers = {
 		"gender": faker.name.prefix(),
-		"firstName": faker.name.firstName(),
-		"name": faker.name.lastName(),
+		"firstname": faker.name.firstName(),
+		"lastname": faker.name.lastName(),
 	 	"city": faker.address.city(),
 	 	"address": faker.address.streetAddress(),
 	 	"birthdate": faker.date.past(),
-	 	"registrationDate": new Date().getTime(),
+	 	"registrationDate": Math.round(new Date().getTime()/1000.0),
 	 	"zipCode": faker.address.zipCode(),
 	 	"phoneNumber": faker.phone.phoneNumber(),
 
 	};
-
-	res.send(fakeCustomers);
+res.send(fakeCustomers);
 });
-
-//route post-produits
-app.post('/products', function(req, res){
-});
-
 
 
 app.post('/customers', function(req, res){
-	//.log(req.body);
+	
 	AddData(dbCustomers, req);
-	res.status(200).end();
+
 });
 
-//routeGetClients
 app.get('/customer/getAll', function(req, res){
 	nodefs.readFile('customers.json',function read(err,data){
 	 		 	if(err) throw err;
@@ -71,77 +85,141 @@ app.get('/customer/getAll', function(req, res){
 });
 
 app.post('/customers/update', function(req, res){
-
 	var add= req.body.db;
 	UpdateData(dbCustomers, add);
-	
-
 	res.send('/customers/update');
-
 });
-//route delete/suppr clients
-app.post('/customers/delete', function(req, res){
-	res.send('/customers/delete');
-});
-
-//routeGetProduit
-app.get('/products/getAll', function(req, res){
-	res.send('/products/getAll');
-});
-
-//route post-produits
+//route produits
 app.post('/products', function(req, res){
-	res.send('/products');
+			AddDataProducts(dbProducts,req);
 });
 
-// route delete/suppr produits
-app.post('/products/delete', function(req, res){
-	res.send('/products/delete');
+
+app.get('/products/getAll', function(req, res){
+	fs.readFile('products.json',function read(err,data){
+	 		 	if(err) throw err;
+	 		 	data=data;
+		 res.send(data);
+	 });
 });
 
 app.post('/products/update', function(){
-	res.send('/products/update');
+	var add= req.body.db;
+	UpdateData(dbProduct, add);
+
 });
 
-//route post-commande
+//route Orders
 app.post('/orders', function(req, res){
-	res.send('/orders');
+	AddDataOrders(dbOrders,req);
 });
 
-//routeGetCommandes
 app.get('/orders/getAll', function(req, res){
-	res.send('/orders/getAll');
+	fs.readFile('orders.json',function read(err,data){
+	 		 	if(err) throw err;
+	 		 	data=data;
+		 res.send(data);
+	 });
 });
 
-app.post('/orders/update', function(){
-	res.send('/orders/update');
+app.post('/orders/update', function(req, res){
+	var add= req.body.db;
+	UpdateData(dbOrders, add);
 });
 
-app.listen(3000, function(){
-	console.log('server ok');
-});
+
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
 // fs.writeFile sert a réecrire le fichier.
 function AddData(dir,req){
+
+	req.checkBody('gender', 'Invalid gender').notEmpty();
+	req.checkBody('name', 'Invalid name').notEmpty();
+	req.checkBody('firstName', 'Invalid firstname').notEmpty();
+	req.checkBody('birthdate', 'Invalid birthdate').notEmpty();
+	req.checkBody('city', 'Invalid city').notEmpty();
+	req.checkBody('zipCode', 'Invalid zipCode').notEmpty();
+//	req.checkBody('address', 'Invalid address').notEmpty();
+	req.checkBody('phoneNumber', 'Invalid phoneNumber').notEmpty();
+
+
+	req.asyncValidationErrors().then(function(){
+	
+		var data = req.body;
+
+		var addCustomer= 
+		{
+			"gender" : data.gender,
+		 	"name" : data.name,
+			"firstName" : data.firstName,
+			"birthdate" : data.birthdate,
+			"city": data.city,
+			"zipCode": data.zipCode,
+			"address" : data.address,
+			"phoneNumber" : data.phoneNumber,
+//			"registrationDate" : now.format('MMMM Do YYYY'),
+		 };
+		nodefs.readFile(dir,function(err,data)
+		{
+		 	obj= JSON.parse(data);
+		 	if(err)throw err;		
+		 	obj.push(addCustomer);
+			json=JSON.stringify(obj);
+		 	nodefs.writeFile(dir,json, function(err)
+		 	{
+		 		if(err) throw err;
+		 	});
+		});
+	}, function(errors){
+		console.log(errors);
+	});
+}
+function AddDataOrders(dir,req){
 	var data = req.body;
-	var dd = new Date();
-	var addCustomer= {
-		"gender" : data.gender,
-	 	"name" : data.name,
-		"firstName" : data.firstName,
-		"birthdate" : data.birthdate,
-		"city": data.city,
-		"zipCode": data.zipCode,
-		"address" : data.address,
-		"phoneNumber" : data.phoneNumber,
-		"registrationDate" : dd.getTime(),
+	var addOrders= {
+		"customer" : data.customer,
+	 	"product" : data.product,
+		"amount" : data.amount,
+		"price" : data.price,
+		"reduction": data.reduction,
+		"shipping": data.shipping,
+		"TTC" : data.TTC,
+		"TVA" : data.TVA,
+		"deliveryAddress" : data.deliveryAddress,
+		"billingAddress" : data.billingAddress,
+		"date" : data.date,
 	 	};
 	 nodefs.readFile(dir,function(err,data){
-	 	obj= JSON.parse(data);
+
+	 	orders= JSON.parse(data);
 	 	if(err)throw err;		
-	 obj.push(addCustomer);
-		json=JSON.stringify(obj);
+	 orders.push(addOrders);
+		json=JSON.stringify(orders);
+	 nodefs.writeFile(dir,json, function(err){
+	 	if(err) throw err;
+	 });
+	 });
+	}
+function AddDataProducts(dir,req){
+	var data = req.body;
+	var addProducts= {
+		"name" : data.name,
+	 	"price" : data.price,
+		"stock" : data.stock,
+		"place" : data.place,
+		"description": data.description,
+		"height": data.height,
+		"weight" : data.weight,
+		"ref" : data.ref,
+	 	};
+	 nodefs.readFile(dir,function(err,data){
+
+	 
+
+	 	products= JSON.parse(data);
+	 	if(err)throw err;		
+	 product.push(addProducts);
+		json=JSON.stringify(products);
 	 nodefs.writeFile(dir,json, function(err){
 	 	if(err) throw err;
 	 });
@@ -154,5 +232,3 @@ function UpdateData(dir, add){
 	 }); 	
 	
 	}
-
-
