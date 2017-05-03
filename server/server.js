@@ -8,7 +8,7 @@ var nodefs = require('fs');
 //var bodyparser = require('body-parser');
 
 
-var momentjs = require('moment');
+//var momentjs = require('moment');
 var faker = require('faker');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
@@ -17,36 +17,36 @@ var expressValidator = require('express-validator');
 
 
 
-app.listen(3000, function(){
-	console.log('server ok');
-});
 
-app.listen(3000);
+
 
 //-- Middleware
 
-app.use(bp.urlencoded({ extended: false }));
+app.use(bodyparser.urlencoded({ extended: false }));
 app.use(expressValidator());
 
 
 
 //route 
 
-app.get('/customers', function(req, res){
-// Fake User
-var fakeCustomers = {
-	"gender": faker.name.prefix(),
-	"firstName": faker.name.firstName(),
-	"lastname": faker.name.lastName(),
- 	"city": faker.address.city(),
- 	"address": faker.address.streetAddress(),
- 	"birthdate": faker.date.past(),
- 	"registrationDate": new date().getTime(),
- 	"zipCode": faker.address.zipCode(),
- 	"phoneNumber": faker.phone.phoneNumber(),
+app.use(express.static(__dirname + '/../client/'));
 
-};
-res.send(fakeCustomers);
+app.get('/customers', function(req, res){
+	// Fake User
+	var fakeCustomers = {
+		"gender": faker.name.prefix(),
+		"firstName": faker.name.firstName(),
+		"name": faker.name.lastName(),
+	 	"city": faker.address.city(),
+	 	"address": faker.address.streetAddress(),
+	 	"birthdate": faker.date.past(),
+	 	"registrationDate": new Date().getTime(),
+	 	"zipCode": faker.address.zipCode(),
+	 	"phoneNumber": faker.phone.phoneNumber(),
+
+	};
+
+	res.send(fakeCustomers);
 });
 
 //route post-produits
@@ -56,7 +56,9 @@ app.post('/products', function(req, res){
 
 
 app.post('/customers', function(req, res){
+	//.log(req.body);
 	AddData(dbCustomers, req);
+	//res.status(200).end();
 });
 
 //routeGetClients
@@ -65,7 +67,7 @@ app.get('/customer/getAll', function(req, res){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
-	 })
+	 });
 });
 
 app.post('/customers/update', function(req, res){
@@ -115,6 +117,9 @@ app.post('/orders/update', function(){
 	res.send('/orders/update');
 });
 
+app.listen(3000, function(){
+	console.log('server ok');
+});
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
 // fs.writeFile sert a réecrire le fichier.
@@ -132,14 +137,14 @@ function AddData(dir,req){
 		"registrationDate" : now.format('MMMM Do YYYY'),
 	 	};
 	 nodefs.readFile(dir,function(err,data){
-	 	obj= JSON.parse(data)
+	 	obj= JSON.parse(data);
 	 	if(err)throw err;		
-	 obj.push(addCustomer)
-		json=JSON.stringify(obj)
+	 obj.push(addCustomer);
+		json=JSON.stringify(obj);
 	 nodefs.writeFile(dir,json, function(err){
 	 	if(err) throw err;
 	 });
-	 })	
+	 });
 	}
 
 function UpdateData(dir, add){
@@ -148,19 +153,5 @@ function UpdateData(dir, add){
 	 }); 	
 	
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
