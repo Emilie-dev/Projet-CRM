@@ -34,10 +34,20 @@ var dbProducts= 'products.json';
 
 
 
+app.use(express.static(__dirname + '/../client/'));
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(expressValidator());
+app.use(app.router);
+
+
+var obj=[];
+var json= JSON.stringify(obj);
+var dbCustomers= 'customers.json';
+var dbOrders = 'orders.json';
+var dbProducts= 'products.json';
 
 //route 
 
-app.use(express.static(__dirname + '/../client/'));
 
 app.get('/customers', function(req, res){
 	// Fake User
@@ -80,7 +90,7 @@ app.get('/customer/getAll', function(req, res){
 
 app.post('/customers/update', function(req, res){
 
-	var add= req.body.db;
+	var add= req.body.bodyparser;
 	UpdateData(dbCustomers, add);
 	
 
