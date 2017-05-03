@@ -1,27 +1,32 @@
 //web server
 var express = require('express');
 var app = express();
-var momentjs = require('moment');
 
-var faker = require('faker');
+
+var momentjs = require('moment');
+var faker = require('faker/locale/fr');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
+var expressValidator = require('express-validator');
 
 
 
-// var expressValidator = require('express-validator');
+
+app.listen(3000, function(){
+	console.log('server ok');
+});
+
+
 
 
 
 //-- Middleware
 
-//app.use(bodyparser.urlencoded({ extended: false }));
-//app.use(expressValidator());
 
+app.use(express.static(__dirname + '/../client/'));
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(expressValidator());
 
-
-app.listen(3000, function(){	
-});
 
 
 
@@ -34,13 +39,14 @@ var dbProducts= 'products.json';
 
 
 
-// app.use(bp.urlencoded({ extended: false }));
-// app.use(expressValidator());
 
-app.use(express.static(__dirname + '/../client/'));
-app.use(bodyparser.urlencoded({ extended: false }));
-//app.use(expressValidator());
+
+
 //app.use(app.router);
+
+
+
+
 
 
 
@@ -74,6 +80,10 @@ app.post('/products', function(req, res){
 
 
 
+app.post('/customers', function(req, res){
+	AddData(dbCustomers, req);
+
+});
 
 app.post('/customers', function(req, res){
 	//.log(req.body);
@@ -87,22 +97,27 @@ app.get('/customer/getAll', function(req, res){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
+
+	 
+
 	 });
+
 });
 
 app.post('/customers/update', function(req, res){
 
+
+	var add= req.body.db;
+
 	var add= req.body.bodyparser;
+
 	UpdateData(dbCustomers, add);
 	
 
 	res.send('/customers/update');
 
 });
-//route delete/suppr clients
-app.post('/customers/delete', function(req, res){
-	res.send('/customers/delete');
-});
+
 
 //routeGetProduit
 app.get('/products/getAll', function(req, res){
@@ -114,12 +129,15 @@ app.post('/products', function(req, res){
 	res.send('/products');
 });
 
-// route delete/suppr produits
-app.post('/products/delete', function(req, res){
-	res.send('/products/delete');
-});
+
 
 app.post('/products/update', function(){
+
+
+});
+// route update produits
+app.post('/products/update', function(req, res){
+
 	res.send('/products/update');
 });
 
@@ -133,9 +151,17 @@ app.get('/orders/getAll', function(req, res){
 	res.send('/orders/getAll');
 });
 
-app.post('/orders/update', function(){
+// route update commandes
+app.post('/orders/update', function(req, res){
 	res.send('/orders/update');
 });
+
+
+//route delete commandes
+app.post('/orders/delete', function(req, res){
+	res.send('/orders/delete');
+});
+
 
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
@@ -154,6 +180,9 @@ function AddData(dir,req){
 		"registrationDate" : now.format('MMMM Do YYYY'),
 	 	};
 	 nodefs.readFile(dir,function(err,data){
+
+	 
+
 	 	obj= JSON.parse(data);
 	 	if(err)throw err;		
 	 obj.push(addCustomer);
@@ -170,5 +199,4 @@ function UpdateData(dir, add){
 	 }); 	
 	
 	}
-
 
