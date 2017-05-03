@@ -3,7 +3,6 @@ var express = require('express');
 var app = express();
 
 
-//var momentjs = require('moment');
 var faker = require('faker/locale/fr');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
@@ -73,6 +72,7 @@ res.send(fakeCustomers);
 app.post('/customers', function(req, res){
 	
 	AddData(dbCustomers, req);
+	res.status(200).end();
 
 });
 
@@ -96,7 +96,7 @@ app.post('/products', function(req, res){
 
 
 app.get('/products/getAll', function(req, res){
-	fs.readFile('products.json',function read(err,data){
+	nodefs.readFile('products.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
@@ -115,7 +115,7 @@ app.post('/orders', function(req, res){
 });
 
 app.get('/orders/getAll', function(req, res){
-	fs.readFile('orders.json',function read(err,data){
+	nodefs.readFile('orders.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
@@ -146,6 +146,7 @@ function AddData(dir,req){
 	req.asyncValidationErrors().then(function(){
 	
 		var data = req.body;
+		var dateNow = new Date();
 
 		var addCustomer= 
 		{
@@ -157,7 +158,7 @@ function AddData(dir,req){
 			"zipCode": data.zipCode,
 			"address" : data.address,
 			"phoneNumber" : data.phoneNumber,
-//			"registrationDate" : now.format('MMMM Do YYYY'),
+			"registrationDate" : dateNow.getTime()
 		 };
 		nodefs.readFile(dir,function(err,data)
 		{

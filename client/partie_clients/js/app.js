@@ -161,7 +161,7 @@ $("submit").on( 'click',function (event) {
 
 function getObject(){
    $.ajax({
-      url:'192.168.1.180:3000/customers/getAll',
+      url:'/customers/getAll',
       method: 'GET',
       success: function(data){
          console.log(JSON.parse(data));
@@ -179,7 +179,7 @@ function delObject(nbr){
    
 
    $.ajax({
-      url:'192.168.1.180:3000/customers/update',
+      url:'/customers/update',
       method: 'POST',
       data:{
          db: JSON.stringify(customers)
@@ -197,7 +197,7 @@ var customers=[];
 
 function recept(){
    $.ajax({
-      url:"192.168.1.180:3000/customers/getAll",
+      url:"/customer/getAll",
       
       success : function(data){
       console.log(data);
