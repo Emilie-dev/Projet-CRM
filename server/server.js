@@ -54,21 +54,21 @@ var dbProducts= 'products.json';
 //route 
 
 
-app.post('/customers', function(req, res){
-//app.use(expressValidator(req.body);
-// Fake User
-var fakeCustomers = {
-	"gender": faker.name.prefix(),
-	"firstname": faker.name.firstName(),
-	"lastname": faker.name.lastName(),
- 	"city": faker.address.city(),
- 	"address": faker.address.streetAddress(),
- 	"birthdate": faker.date.past(),
- 	"registrationDate": Math.round(new Date().getTime()/1000.0),
- 	"zipCode": faker.address.zipCode(),
- 	"phoneNumber": faker.phone.phoneNumber(),
+app.post('/customers/fake', function(req, res){
 
-};
+// Fake User
+	var fakeCustomers = {
+		"gender": faker.name.prefix(),
+		"firstname": faker.name.firstName(),
+		"lastname": faker.name.lastName(),
+	 	"city": faker.address.city(),
+	 	"address": faker.address.streetAddress(),
+	 	"birthdate": faker.date.past(),
+	 	"registrationDate": Math.round(new Date().getTime()/1000.0),
+	 	"zipCode": faker.address.zipCode(),
+	 	"phoneNumber": faker.phone.phoneNumber(),
+
+	};
 res.send(fakeCustomers);
 });
 
@@ -79,11 +79,6 @@ app.post('/products', function(req, res){
 
 
 
-
-app.post('/customers', function(req, res){
-	AddData(dbCustomers, req);
-
-});
 
 app.post('/customers', function(req, res){
 	//.log(req.body);
