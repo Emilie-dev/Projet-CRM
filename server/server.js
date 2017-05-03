@@ -21,7 +21,7 @@ app.listen(3000, function(){
 	console.log('server ok');
 });
 
-app.listen(3000);
+
 
 //-- Middleware
 
