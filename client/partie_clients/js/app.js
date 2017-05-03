@@ -1,6 +1,5 @@
-
 console.log("Hello");
-var customers = [];
+
 
 
 function surligne(champ, erreur){
@@ -140,7 +139,7 @@ function verifForm(f){
    var zipCodeOk = verifZipCode(f.zipCode);
    var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
 
-   if(genderOk && firstNameOk && nameOk && cityOk && addressOk && birthdateOk && zipCodeOk)
+   if( firstNameOk && nameOk && birthdateOk)
       return true;
    else
    {
@@ -161,58 +160,59 @@ $("submit").on( 'click',function (event) {
 
 
 function getObject(){
-	$.ajax({
-		url:'/customer/getAll',
-		method: 'GET',
-		success: function(data){
-			console.log(JSON.parse(data));
-			customers = JSON.parse(data);
-			// affiche(d);
-		}
-	});
+   $.ajax({
+      url:'/customer/getAll',
+      method: 'GET',
+      success: function(data){
+         console.log(JSON.parse(data));
+         customers = JSON.parse(data);
+         // affiche(d);
+      }
+   });
 
 }
 
 function delObject(nbr){
-	console.log(customers);
-	customers.splice(nbr,1);
-	console.log(customers);
-	
+   console.log(customers);
+   customers.splice(nbr,1);
+   console.log(customers);
+   
 
-	$.ajax({
-		url:'/customers/update',
-		method: 'POST',
-		data:{
-			db: JSON.stringify(customers)
-		}
-	});
+   $.ajax({
+      url:'/customers/update',
+      method: 'POST',
+      data:{
+         db: JSON.stringify(customers)
+      }
+   });
 
 }
 
 
 $(function(){
-	$("#customerTable").tablesorter();
+   $("#customerTable").tablesorter();
 });
 
 var customers=[];
 
 function recept(){
-	$.ajax({
-		url:"/customer/getAll",
-		
-		success : function(data){
-		console.log(data);
-		}
-	})
-	.done(function(data){
-		customers=JSON.parse(data);
-		// console.log(customers);
-		load(customers);				
-	});
+   $.ajax({
+      url:"/customer/getAll",
+      
+      success : function(data){
+      console.log(data);
+      }
+   })
+   .done(function(data){
+      customers=JSON.parse(data);
+      // console.log(customers);
+      load(customers);           
+   });
 }
 
 
 function load(tab){
+
    $('tbody').html(' ');
 	for (i=0;i<tab.length;i++){
 		$('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><a href="#" class="sup" data-ind="'+i+'">X</a></td><td><a href="#" class="edt" data-ind="'+i+'">edit</a></td></tr>');
@@ -230,5 +230,4 @@ function load(tab){
 $(document).ready(function(){
    recept();
 });
-
 
