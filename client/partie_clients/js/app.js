@@ -180,8 +180,11 @@ function recept(){
 	})
 };
 
-   function load(tab){
-	  for (i=0;i<tab.length;i++){
-		
-   }
-}
+
+function load(tab){
+	for (i=0;i<tab.length;i++){
+		$("tbody").append("<tr></tr>")
+		$("tr").append("")
+		}		
+};
+

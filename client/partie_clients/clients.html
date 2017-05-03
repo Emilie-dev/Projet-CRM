@@ -4,7 +4,8 @@
 	<meta charset="utf-8">
 	<title>CRM</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" href="../node_modules/tablesorter/dist/css/theme.default.min.css">	
+	<link rel="stylesheet" href="../../node_modules/tablesorter/dist/css/theme.default.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.8/css/theme.default.min.css" integrity="sha256-kZJ4kB78IbXuxMtCpmaXzii8vxEKtu8pjicH62E0/qM=" crossorigin="anonymous" />	
 </head>
 <body>
 
@@ -46,14 +47,10 @@
 			<label for="adress">ADRESSE</label>
 			<input id="adress" type="text" name="adress" onblur="verifAdress(this)"/>
 
-<<<<<<< HEAD
-			<label for="birthDate">NAISSANCE</label>
-			<input id="birthDate" type="text" name="birthDate"/>	
-=======
+
 			<label for="birthDate">DATE DE NAISSANCE</label>
 			<input id="birthDate" type="text" name="birthDate" onblur="verifBirthdate(this)"/>	
 
->>>>>>> 94576dd0a8f5abcb427bba24597e8d96ed3e1d4d
 		</div>
 
 		<div>
@@ -103,10 +100,12 @@
 	<footer>
 
 	</footer>
-
-	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-
-	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  			crossorigin="anonymous"></script>
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.8/js/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
 
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
