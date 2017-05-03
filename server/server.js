@@ -22,12 +22,6 @@ app.listen(3000, function(){
 
 //-- Middleware
 
-//app.use(bodyparser.urlencoded({ extended: false }));
-//app.use(expressValidator());
-
-
-//-- Middleware
-
 //app.use(bp.urlencoded({ extended: false }));
 //app.use(expressValidator());
 
@@ -39,9 +33,6 @@ var dbProducts= 'products.json';
 
 
 
-
-// app.use(bp.urlencoded({ extended: false }));
-// app.use(expressValidator());
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
