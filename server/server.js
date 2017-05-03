@@ -2,17 +2,11 @@
 var express = require('express');
 var app = express();
 
-//var momentjs = require('moment');
+var momentjs = require('moment');
 var faker = require('faker/locale/fr');
 var nodefs = require('fs');
-//var bodyparser = require('body-parser');
-
-
-//var momentjs = require('moment');
-var faker = require('faker');
-var nodefs = require('fs');
 var bodyparser = require('body-parser');
-//var expressValidator = require('express-validator');
+var expressValidator = require('express-validator');
 
 
 
@@ -37,7 +31,7 @@ var dbProducts= 'products.json';
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(expressValidator());
-app.use(app.router);
+//app.use(app.router);
 
 
 var obj=[];
@@ -98,10 +92,7 @@ app.post('/customers/update', function(req, res){
 	res.send('/customers/update');
 
 });
-//route delete/suppr clients
-app.post('/customers/delete', function(req, res){
-	res.send('/customers/delete');
-});
+
 
 //routeGetProduit
 app.get('/products/getAll', function(req, res){
@@ -113,10 +104,6 @@ app.post('/products', function(req, res){
 	res.send('/products');
 });
 
-// route delete/suppr produits
-app.post('/products/delete', function(req, res){
-	res.send('/products/delete');
-});
 
 app.post('/products/update', function(){
 	res.send('/products/update');
