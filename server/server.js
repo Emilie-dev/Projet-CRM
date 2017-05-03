@@ -6,7 +6,7 @@ var momentjs = require('moment');
  //var faker = require('faker');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
-var expressValidator = require('express-validator');
+//var expressValidator = require('express-validator');
 
 
 
@@ -14,7 +14,6 @@ app.listen(3000, function(){
 	console.log('server ok');
 });
 
-app.listen(3000);
 
 
 //route 
