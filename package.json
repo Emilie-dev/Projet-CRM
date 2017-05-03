@@ -1,0 +1,38 @@
+{
+<<<<<<< HEAD
+  "name": "partie_clients",
+=======
+  "name": "client",
+>>>>>>> 32dd5d3390c23076000cf61abdb41d960b64b116
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+<<<<<<< HEAD
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimplonAuch/Projet-CRM.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SimplonAuch/Projet-CRM/issues"
+  },
+  "homepage": "https://github.com/SimplonAuch/Projet-CRM#readme",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "tablesorter": "^2.28.8"
+=======
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1",
+    "tablesorter": "^2.28.8",
+    "validator": "^7.0.0"
+>>>>>>> 32dd5d3390c23076000cf61abdb41d960b64b116
+  }
+}
