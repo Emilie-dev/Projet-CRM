@@ -128,7 +128,6 @@ $(function(){
   $("#customerTable").tablesorter();
 });
 
-
 var customers=[];
 
 function recept(){
@@ -152,4 +151,39 @@ function recept(){
 function load(tab){
 	for (i=0;i<tab.length;i++){
 		
+};
+
+// Supprimez un article
+
+$("").click(function() {
+   
+   var delete = $(this).data('id');
+   
+   console.log(delete);
+   
+   $.ajax({  
+      url:'http://192.168.1.152/update/update/',
+      data: {
+         _id: delete,
+      },
+   });   
+});
+
+// Modifier un article
+
+$("").click(function(){
+
+   var edit = $(this).data('id');      
+   
+   console.log(edit);
+
+   $.ajax({
+      url:'http://192.168.1.152/update',
+      data: {
+         task: 'update',
+         _id: edit,
+         value: JSON.stringify( {"":, "":} ),
+      }
+   });
+});
 };
