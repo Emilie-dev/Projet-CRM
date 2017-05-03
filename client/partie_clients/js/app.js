@@ -1,3 +1,4 @@
+
 function surligne(champ, erreur){
    
    if(erreur)
@@ -117,6 +118,7 @@ function verifPhoneNumber(champ) {
    {
       surligne(champ, false);
       return true;
+
    }	
 }
 
@@ -124,19 +126,35 @@ function verifPhoneNumber(champ) {
 
 
 
+$("submit").click(function () {
+ 
+ e.preventDefault();  
+
+function verifForm(f){
+   
+   var genderOk = verifGender(f.gender);
+   var firstNameOk = verifFirstName(f.firstName);
+   var nameOk = verifName(f.name);
+   var cityOk = verifCity(f.city);
+   var addressOk = verifAdress(f.address);
+   var birthDateOk = verifBirthdate(f.birthdate);
+   var zipCodeOk = verifZipCode(f.zipCode);
+   var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
 
 
-// function verifForm(f){
-   
-//    var genderOk = verifGender(f.gender);
-//    var firstNameOk = verifMail(f.firstName);
-//    // var ageOk = verifAge(f.age);
-   
-//    if(genderOk && firstNameOk)
-//       return true;
-//    else
-//    {
-//       alert("Veuillez remplir correctement tous les champs");
-//       return false;
-//    }
-// }
+   if(genderOk && firstNameOk && nameOk && cityOk && addressOk && birthdateOk && zipCodeOk)
+      return true;
+   else
+   {
+      alert("Veuillez remplir correctement tous les champs");
+      return false;
+   }
+}
+
+
+})
+
+// $(function(){
+// 	$("#customerTable").tablesorter();
+// });
+

@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>CRM</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- <link rel="stylesheet" href="../node_modules/tablesorter/dist/css/theme.default.min.css"> -->	
 </head>
 <body>
 
@@ -38,12 +39,15 @@
 			<label for="city">VILLE</label>
 			<input id="city" type="" name="city" onblur="verifCity(this)" />
 
+
 			<label for="address">ADRESSE</label>
 			<input id="address" type="" name="address" onblur="verifAdress(this)" />
 
 
 			<label for="birthdate">DATE DE NAISSANCE</label>
 			<input id="birthdate" type="" name="birthdate" onblur="verifBirthdate(this)" />	
+
+
 		</div>
 		<div>
 			<label for="registrationDate">DATE D'INSCRIPTION</label>
@@ -51,7 +55,6 @@
 
 		</div>
 		<div>
-
 
 			<label for="zipCode">CODE POSTAL</label>
 			<input id="zipCode" type="" name="zipCode" onblur="verifZipCode(this)" />
@@ -65,8 +68,7 @@
 		</div>
 	</form>
 
-
-	<table>
+	<table id="customerTable" class="tablesorter">
 		<thead>
 			<tr>
 				<th>TITRE</th>
@@ -82,15 +84,15 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
+				<td>a</td>
+				<td>b</td>
+				<td>c</td>
+				<td>d</td>
+				<td>e</td>
+				<td>f</td>
+				<td>g</td>
+				<td>h</td>
+				<td>i</td>
 			</tr>
 		</tbody>
 	</table>
@@ -98,7 +100,11 @@
 	<footer>
 
 	</footer>
+
 	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+
+	<!-- <script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script> -->
+
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
