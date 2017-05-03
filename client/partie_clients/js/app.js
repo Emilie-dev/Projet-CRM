@@ -161,12 +161,12 @@ $("submit").on( 'click',function (event) {
 
 function getObject(){
    $.ajax({
-      url:'/customer/getAll',
+      url:'/customers/getAll',
       method: 'GET',
       success: function(data){
          console.log(JSON.parse(data));
          customers = JSON.parse(data);
-         // affiche(d);
+         affiche(d);
       }
    });
 
@@ -205,7 +205,7 @@ function recept(){
    })
    .done(function(data){
       customers=JSON.parse(data);
-      // console.log(customers);
+      console.log(customers);
       load(customers);           
    });
 }
