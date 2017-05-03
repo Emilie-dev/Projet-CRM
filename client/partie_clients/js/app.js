@@ -215,7 +215,7 @@ function load(tab){
 
    $('tbody').html(' ');
 	for (i=0;i<tab.length;i++){
-		$('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><img src="../res/poubelle.png" class="sup" data-ind="'+i+'"/></td><td><a href="#" class="edt" data-ind="'+i+'">edit</a></td></tr>');
+		$('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><img src="../res/poubelle.png" class="sup" data-ind="'+i+'"/></td><td><img src="../res/modifier.png" class="edt" data-ind="'+i+'"></img></td></tr>');
 		}
 
       $('.sup').on('click', function(){
