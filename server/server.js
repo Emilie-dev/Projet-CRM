@@ -1,4 +1,4 @@
-//web server
+//--Web server
 var express = require('express');
 var app = express();
 
@@ -30,6 +30,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 
 
 
+
 var obj=[];
 var json= JSON.stringify(obj);
 var dbCustomers= 'customers.json';
@@ -48,10 +49,12 @@ var dbProducts= 'products.json';
 
 
 
+>>>>>>> 5ca357739d8abf324322fbcf59ed7df10db9c859
 
 
 
-//route 
+
+//--Route 
 
 
 app.post('/customers/fake', function(req, res){
@@ -162,6 +165,51 @@ app.post('/orders/delete', function(req, res){
 // fs.readFile sert a parcourir le fichier contenant la base client,
 // fs.writeFile sert a réecrire le fichier.
 function AddData(dir,req){
+
+	
+	req.checkBody('gender', 'Invalid gender').notEmpty();
+	req.checkBody('name', 'Invalid name').notEmpty();
+	req.checkBody('firstname', 'Invalid firstname').notEmpty();
+	req.checkBody('birthdate', 'Invalid birthdate').notEmpty();
+	req.checkBody('city', 'Invalid city').notEmpty();
+	req.checkBody('zipCode', 'Invalid zipCode').notEmpty();
+	req.checkBody('address', 'Invalid address').notEmpty();
+	req.checkBody('phoneNumber', 'Invalid phoneNumber').notEmpty();
+
+
+	var errors = req.validationErrors();
+	if (errors)
+	{
+		console.log(errors);
+	}
+	else 
+	{
+		var data = req.body;
+
+		var addCustomer= 
+		{
+			"gender" : data.gender,
+		 	"name" : data.name,
+			"firstName" : data.firstName,
+			"birthdate" : data.birthdate,
+			"city": data.city,
+			"zipCode": data.zipCode,
+			"address" : data.address,
+			"phoneNumber" : data.phoneNumber,
+			"registrationDate" : now.format('MMMM Do YYYY'),
+		 };
+		nodefs.readFile(dir,function(err,data)
+		{
+		 	obj= JSON.parse(data);
+		 	if(err)throw err;		
+		 	obj.push(addCustomer);
+			json=JSON.stringify(obj);
+		 	nodefs.writeFile(dir,json, function(err)
+		 	{
+		 		if(err) throw err;
+		 	});
+		});
+
 	var data = req.body;
 	var addCustomer= {
 		"gender" : data.gender,
@@ -186,7 +234,10 @@ function AddData(dir,req){
 	 	if(err) throw err;
 	 });
 	 });
+
 	}
+
+}
 
 function UpdateData(dir, add){
  	 nodefs.writeFile(dir,add, function(err){
