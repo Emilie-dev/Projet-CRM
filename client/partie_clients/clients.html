@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>CRM</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="../node_modules/tablesorter/dist/css/theme.default.min.css">	
 </head>
 <body>
 
@@ -11,52 +12,59 @@
 	
 	<ul>
 		<li><img src="../Admin.ico"></></li>
-		<li><a href="default.asp">CLIENTS</a></li>
-		<li><a href="news.asp">PRODUITS</a></li>
-		<li><a href="contact.asp">COMMANDES</a></li>
+		<li><a href="#">CLIENTS</a></li>
+		<li><a href="..client/partie_produits/produits.html">PRODUITS</a></li>
+		<li><a href="..client/partie_commandes/commandes.html">COMMANDES</a></li>
 	</ul>
 
 	<!-- FORMULAIRE -->
 	
 	<h2>FORMULAIRE A REMPLIR</h2>
 
-	<form action="" method="">
+
+	<form action="/customers" method="POST">
 
 		<div>
-			<label for="Title"><h5>TITRE</h5></label>
-			<input id="Title" type="text" name=""/>
+			<label for="gender">TITRE</label>
+			<input id="gender" type="text" name="gender"/>
 
-			<label for="firtName"><h5>PRENOM</h5></label>
-			<input id="firstName" type="" name=""/>
+			<label for="firtName">PRENOM</label>
+			<input id="firstName" type="" name="firstName"/>
 
-			<label for="Name"><h5>NOM<h5></label>
-			<input id="Name" type="" name=""/>
+			<label for="name">NOM</label>
+			<input id="name" type="text" name="name"/>
 		</div>
 
 		<div>
-			<label for="City"><h5>VILLE</h5></label>
-			<input id="City" type="" name=""/>
+			<label for="city">VILLE</label>
+			<input id="city" type="text" name="city"/>
 
-			<label for="Address"><h5>ADRESSE</h5></label>
-			<input id="Address" type="" name=""/>
+			<label for="adress">ADRESSE</label>
+			<input id="adress" type="text" name="adress"/>
 
-			<label for="birthDate"><h5>DATE DE NAISSANCE</h5></label>
-			<input id="birthDate" type="" name=""/>	
+			<label for="birthDate">DATE DE NAISSANCE</label>
+			<input id="birthDate" type="text" name="birthDate"/>	
 		</div>
-		
+		<div>
+			<label for="registrationDate">DATE D'INSCRIPTION</label>
+			<input id="registrationDate" type="text" name="registrationDate"/>
+
+		</div>
 		<div>
 
-			<label for="postalCode"><h5>CODE POSTAL</h5></label>
-			<input id="postalCode" type="" name=""/>
+			<label for="zipCode">CODE POSTAL</label>
+			<input id="zipCode" type="text" name="zipCode"/>
 
-			<label for="phoneNumber"><h5>N°TEL</h5></label>
-			<input id="phoneNumber" type="" name=""/>
+			<label for="phoneNumber">N°TEL</label>
+			<input id="phoneNumber" type="text" name="phoneNumber"/>
+
+
 			<button type="submit">ENREGISTRER CLIENT</button>
+
 		</div>
 	</form>
 
-
-	<table>
+	<table id="customerTable" class="tablesorter">
 		<thead>
 			<tr>
 				<th>TITRE</th>
@@ -72,15 +80,15 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
-				<td>L</td>
+				<td>a</td>
+				<td>b</td>
+				<td>c</td>
+				<td>d</td>
+				<td>e</td>
+				<td>f</td>
+				<td>g</td>
+				<td>h</td>
+				<td>i</td>
 			</tr>
 		</tbody>
 	</table>
@@ -88,7 +96,8 @@
 	<footer>
 
 	</footer>
-	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
