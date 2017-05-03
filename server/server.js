@@ -22,14 +22,15 @@ var expressValidator = require('express-validator');
 
 //-- Middleware
 
+app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(expressValidator());
+app.use(app.router);
 
 
 
 //route 
 
-app.use(express.static(__dirname + '/../client/'));
 
 app.get('/customers', function(req, res){
 	// Fake User
