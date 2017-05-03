@@ -1,4 +1,3 @@
-
 function surligne(champ, erreur){
 
    if(erreur){
@@ -131,22 +130,23 @@ function verifForm(f){
    var firstNameOk = verifFirstName(f.firstName);
    var nameOk = verifName(f.name);
    var cityOk = verifCity(f.city);
-   var addressOk = verifAdress(f.address);
+   var addressOk = verifAdress(f.adress);
    var birthDateOk = verifBirthdate(f.birthdate);
    var zipCodeOk = verifZipCode(f.zipCode);
    var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
 
-   if(genderOk && firstNameOk && nameOk && cityOk && addressOk && birthdateOk && zipCodeOk)
+   if( firstNameOk && nameOk  && birthdateOk ){
       return true;
-   else
-   {
+   }
+   else{
       alert("Veuillez remplir correctement tous les champs");
       return false;
    }
 }
 
-$("submit").on( 'click',function (event) {
+$("button").on( function (event) {
    event.preventDefault();
+
    verifForm()
    if(true){
       alert("Votre client viens d'être enregistrer dans la base de données"),
