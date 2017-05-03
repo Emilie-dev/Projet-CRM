@@ -93,7 +93,7 @@ app.post('/customers', function(req, res){
 
 //routeGetClients
 app.get('/customer/getAll', function(req, res){
-	fs.readFile('customers.json',function read(err,data){
+	nodefs.readFile('customers.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
