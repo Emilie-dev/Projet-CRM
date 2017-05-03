@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Produits</title>
+	<link rel="stylesheet" type="text/css" href="css/produits.css">
+</head>
+<body>
+
+	<!-- HEADER -->
+	
+	<ul>
+		<li><img src="../Admin.ico"></></li>
+		<li><a href="../partie_clients/clients.html">CLIENTS</a></li>
+		<li><a href="../partie_produits/produits.html">PRODUITS</a></li>
+		<li><a href="../partie_commandes/commandes.html">COMMANDES</a></li>
+	</ul>
+	<!-- FORMULAIRE -->
+
+	<h2>FORMULAIRE PRODUITS</h2>
+
+	<form action="/customers" method="POST">
+	   <div>
+	      <label for="name">Nom</label>
+	      <input id="name" type="text" name="name"></input>
+	   
+	      <label for="price">Prix</label>
+	      <input id="price" type="number" name="price"></input>
+
+	      <label for="stock">Stock</label>
+	      <input id="stock" type="number" name="stock"></input>
+	   </div>
+
+	   <div>
+	      <label for="place">Lieu</label>
+	      <input id="place" type="text" name="place"></input>
+
+	      <label for="description">Description</label>
+	      <input for="description" type="text" name="description"></input>
+
+	      <label for="size">Taille</label>
+	      <input id="size" type="text" name="size"></input>
+
+	   </div>
+
+       <div>
+          <label for="weight">Poids</label>
+          <input for="weight" type="text" name="weight"></input>
+
+          <label for="reference">Référence</label>
+          <input for="reference" type="text" name="reference"></input>
+
+          <button type="submit">ENREGISTRER PRODUITS</button>
+       </div>
+    </form>
+
+
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+
+	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
+
+	<script type="text/javascript" src="../node_modules/validator/validator.min.js"></script>
+
+	<script type="text/javascript" src="js/produits.js"></script>
+
+
+</body>
+</html>

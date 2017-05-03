@@ -1,3 +1,7 @@
+console.log("Hello");
+var customers = [];
+
+
 function surligne(champ, erreur){
 
    if(erreur){
@@ -130,61 +134,90 @@ function verifForm(f){
    var firstNameOk = verifFirstName(f.firstName);
    var nameOk = verifName(f.name);
    var cityOk = verifCity(f.city);
-   var addressOk = verifAdress(f.adress);
+   var addressOk = verifAdress(f.address);
    var birthDateOk = verifBirthdate(f.birthdate);
    var zipCodeOk = verifZipCode(f.zipCode);
    var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
 
-   if( firstNameOk && nameOk  && birthdateOk ){
+   if( firstNameOk && nameOk && birthdateOk)
       return true;
-   }
-   else{
+   else
+   {
       alert("Veuillez remplir correctement tous les champs");
       return false;
    }
 }
 
-$("button").on( function (event) {
+$("submit").on( 'click',function (event) {
    event.preventDefault();
-
-   verifForm()
+   verifForm();
    if(true){
-      alert("Votre client viens d'être enregistrer dans la base de données"),
+      alert("Votre client viens d'être enregistrer dans la base de données");
       $('form input').val("");
-   } alert('Verifier le formulaire')
+   } alert('Verifier le formulaire');
 
-})
-
-$(function(){
-  $("#customerTable").tablesorter();
 });
 
+
+function getObject(){
+   $.ajax({
+      url:'/customer/getAll',
+      method: 'GET',
+      success: function(data){
+         console.log(JSON.parse(data));
+         customers = JSON.parse(data);
+         // affiche(d);
+      }
+   });
+
+}
+
+function delObject(nbr){
+   console.log(customers);
+   customers.splice(nbr,1);
+   console.log(customers);
+   
+
+   $.ajax({
+      url:'/customers/update',
+      method: 'POST',
+      data:{
+         db: JSON.stringify(customers)
+      }
+   });
+
+}
+
+
+$(function(){
+   $("#customerTable").tablesorter();
+});
 
 var customers=[];
 
 function recept(){
-	$.ajax({
-		url:"http://192.168.1.152/customers/",
-		data: {
-		task: "get",
-		key: "customers",
-		},
-		success : function(data){
-		console.log(data)
-		}
-	})
-	.done(function(data){
-		customers=JSON.parse(data);
-		console.log(customers);
-		load(customers);				
-	})
-};
+   $.ajax({
+      url:"/customer/getAll",
+      
+      success : function(data){
+      console.log(data);
+      }
+   })
+   .done(function(data){
+      customers=JSON.parse(data);
+      // console.log(customers);
+      load(customers);           
+   });
+}
 
 
 function load(tab){
-	for (i=0;i<tab.length;i++){
-		$("tbody").append("<tr></tr>")
-		$("tr").append("")
-		}		
-};
+   for (i=0;i<tab.length;i++){
+      $('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><a href="#" class="sup" data-ind="'+i+'">X</a></td><td><a href="#" class="edt" data-ind="'+i+'">edit</a></td></tr>');
+      }     
+}
+
+$(document).ready(function(){
+   recept();
+});
 

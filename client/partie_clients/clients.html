@@ -4,20 +4,19 @@
 	<meta charset="utf-8">
 	<title>CRM</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	
+	<link rel="stylesheet" href="../node_modules/tablesorter/dist/css/theme.default.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.8/css/theme.default.min.css" integrity="sha256-kZJ4kB78IbXuxMtCpmaXzii8vxEKtu8pjicH62E0/qM=" crossorigin="anonymous" />	
 </head>
 <body>
 
 	<!-- HEADER -->
-	
 	<ul>
-		<li><img src="../Admin.ico"></></li>
-		<li><a href="#">CLIENTS</a></li>
-		<li><a href="..client/partie_produits/produits.html">PRODUITS</a></li>
-		<li><a href="..client/partie_commandes/commandes.html">COMMANDES</a></li>
+		<li><img src="../Admin.ico"></li>
+		<li><a href="../partie_clients/clients.html">CLIENTS</a></li>
+		<li><a href="../partie_produits/produits.html">PRODUITS</a></li>
+		<li><a href="../partie_commandes/commandes.html">COMMANDES</a></li>
 	</ul>
-
+	
 	<!-- FORMULAIRE -->
 	
 	<h2>FORMULAIRE A REMPLIR</h2>
@@ -44,12 +43,15 @@
 			<input id="city" type="text" name="city" onblur="verifCity(this)"/>
 
 
-			<label for="adress">ADRESSE</label>
-			<input id="adress" type="text" name="adress" onblur="verifAdress(this)"/>
+			<label for="address">ADRESSE</label>
+			<input id="address" type="text" name="address" onblur="verifAdress(this)"/>
 
 
-			<label for="birthDate">DATE DE NAISSANCE</label>
-			<input id="birthDate" type="text" name="birthDate" onblur="verifBirthdate(this)"/>	
+	
+
+			<label for="birthdate">NAISSANCE</label>
+			<input id="birthdate" type="text" name="birthdate" onblur="verifBirthdate(this)"/>	
+
 
 		</div>
 
@@ -80,31 +82,24 @@
 				<th>DATE D'INSCRIPTION</th>
 				<th>CODE POSTAL</th>
 				<th>N°TEL</th>
+				<th>sup</th>
+				<th>edit</th>
 			</tr>	
 		</thead>
 		<tbody>
-			<tr>
-				<td>a</td>
-				<td>b</td>
-				<td>c</td>
-				<td>d</td>
-				<td>e</td>
-				<td>f</td>
-				<td>g</td>
-				<td>h</td>
-				<td>i</td>
-			</tr>
+			
 		</tbody>
 	</table>
 
 	<footer>
 
 	</footer>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/validator/7.0.0/validator.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  			crossorigin="anonymous"></script>
-  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.8/js/jquery.tablesorter.js"></script>
+
+	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="../node_modules/validator/validator.js"></script>
+
 
 
 
