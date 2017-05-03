@@ -1,4 +1,4 @@
-console.log("Hello");
+console.log("HelloProduits");
 
 function getObject(){
 	$.ajax({
@@ -6,21 +6,21 @@ function getObject(){
 		method: 'GET',
 		success: function(data){
 			console.log(JSON.parse(data));
-			customers = JSON.parse(data);
+			products = JSON.parse(data);
 			// affiche(d);
 		}
 	});
 
 }
 
-function delObject(nbr){
-	console.log(products);
-	customers.splice(nbr,1);
+function delObject(ind){
+	// console.log(products);
+	products.splice(ind,1);
 	console.log(products);
 	
 
 	$.ajax({
-		url:'/customers/update',
+		url:'/products/update',
 		method: 'POST',
 		data:{
 			db: JSON.stringify(products)
@@ -45,9 +45,9 @@ function recept(){
 		}
 	})
 	.done(function(data){
-		customers=JSON.parse(data);
+		products=JSON.parse(data);
 		// console.log(customers);
-		load(customers);				
+		load(products);				
 	});
 }
 
@@ -58,5 +58,6 @@ function load(tab){
 }
 
 $(document).ready(function(){
-   recept();
+   getObject();
+   load(products);
 });

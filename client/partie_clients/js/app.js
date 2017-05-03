@@ -161,7 +161,7 @@ $("submit").on( 'click',function (event) {
 
 function getObject(){
    $.ajax({
-      url:'/customers/getAll',
+      url:'/customer/getAll',
       method: 'GET',
       success: function(data){
          console.log(JSON.parse(data));

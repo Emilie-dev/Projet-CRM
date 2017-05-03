@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 
 
-var faker = require('faker/locale/fr');
+var faker = require('faker');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
@@ -92,6 +92,7 @@ app.post('/customers/update', function(req, res){
 //route produits
 app.post('/products', function(req, res){
 			AddDataProducts(dbProducts,req);
+			res.end();
 });
 
 
@@ -146,7 +147,7 @@ function AddData(dir,req){
 	req.asyncValidationErrors().then(function(){
 	
 		var data = req.body;
-		var dateNow = new Date();
+		var dateNow = new Date().getTime();
 
 		var addCustomer= 
 		{
@@ -158,7 +159,7 @@ function AddData(dir,req){
 			"zipCode": data.zipCode,
 			"address" : data.address,
 			"phoneNumber" : data.phoneNumber,
-			"registrationDate" : dateNow.getTime()
+			"registrationDate" : dateNow
 		 };
 		nodefs.readFile(dir,function(err,data)
 		{
@@ -219,7 +220,7 @@ function AddDataProducts(dir,req){
 
 	 	products= JSON.parse(data);
 	 	if(err)throw err;		
-	 product.push(addProducts);
+	 	products.push(addProducts);
 		json=JSON.stringify(products);
 	 nodefs.writeFile(dir,json, function(err){
 	 	if(err) throw err;
