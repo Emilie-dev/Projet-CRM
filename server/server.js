@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 
+
 var momentjs = require('moment');
 var faker = require('faker/locale/fr');
 var nodefs = require('fs');
@@ -10,28 +11,23 @@ var expressValidator = require('express-validator');
 
 
 
-//-- Middleware
 
-app.use(bodyparser.urlencoded({ extended: false }));
-app.use(expressValidator());
-
-
-
-app.listen(3000, function(){	
+app.listen(3000, function(){
+	console.log('server ok');
 });
 
-var obj=[];
-var json= JSON.stringify(obj);
-var dbCustomers= 'customers.json';
-var dbOrders = 'orders.json';
-var dbProducts= 'products.json';
 
+
+
+
+//-- Middleware
 
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(expressValidator());
-//app.use(app.router);
+
+
 
 
 var obj=[];
@@ -39,34 +35,55 @@ var json= JSON.stringify(obj);
 var dbCustomers= 'customers.json';
 var dbOrders = 'orders.json';
 var dbProducts= 'products.json';
+
+
+
+
+
+
+
+//app.use(app.router);
+
+
+
+
+
+
 
 
 //route 
 
 
 app.get('/customers', function(req, res){
-	// Fake User
-	var fakeCustomers = {
-		"gender": faker.name.prefix(),
-		"firstName": faker.name.firstName(),
-		"name": faker.name.lastName(),
-	 	"city": faker.address.city(),
-	 	"address": faker.address.streetAddress(),
-	 	"birthdate": faker.date.past(),
-	 	"registrationDate": new Date().getTime(),
-	 	"zipCode": faker.address.zipCode(),
-	 	"phoneNumber": faker.phone.phoneNumber(),
 
-	};
+// Fake User
+var fakeCustomers = {
+	"gender": faker.name.prefix(),
+	"firstname": faker.name.firstName(),
+	"lastname": faker.name.lastName(),
+ 	"city": faker.address.city(),
+ 	"address": faker.address.streetAddress(),
+ 	"birthdate": faker.date.past(),
+ 	"registrationDate": Math.round(new Date().getTime()/1000.0),
+ 	"zipCode": faker.address.zipCode(),
+ 	"phoneNumber": faker.phone.phoneNumber(),
 
-	res.send(fakeCustomers);
+};
+res.send(fakeCustomers);
 });
+
 
 //route post-produits
 app.post('/products', function(req, res){
 });
 
 
+
+
+app.post('/customers', function(req, res){
+	AddData(dbCustomers, req);
+
+});
 
 app.post('/customers', function(req, res){
 	//.log(req.body);
@@ -80,12 +97,20 @@ app.get('/customer/getAll', function(req, res){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
+
+	 
+
 	 });
+
 });
 
 app.post('/customers/update', function(req, res){
 
+
+	var add= req.body.db;
+
 	var add= req.body.bodyparser;
+
 	UpdateData(dbCustomers, add);
 	
 
@@ -105,7 +130,14 @@ app.post('/products', function(req, res){
 });
 
 
+
 app.post('/products/update', function(){
+
+
+});
+// route update produits
+app.post('/products/update', function(req, res){
+
 	res.send('/products/update');
 });
 
@@ -119,9 +151,17 @@ app.get('/orders/getAll', function(req, res){
 	res.send('/orders/getAll');
 });
 
-app.post('/orders/update', function(){
+// route update commandes
+app.post('/orders/update', function(req, res){
 	res.send('/orders/update');
 });
+
+
+//route delete commandes
+app.post('/orders/delete', function(req, res){
+	res.send('/orders/delete');
+});
+
 
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
@@ -140,6 +180,9 @@ function AddData(dir,req){
 		"registrationDate" : now.format('MMMM Do YYYY'),
 	 	};
 	 nodefs.readFile(dir,function(err,data){
+
+	 
+
 	 	obj= JSON.parse(data);
 	 	if(err)throw err;		
 	 obj.push(addCustomer);
@@ -156,5 +199,4 @@ function UpdateData(dir, add){
 	 }); 	
 	
 	}
-
 
