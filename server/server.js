@@ -47,7 +47,7 @@ var dbProducts= 'products.json';
 //app.use(app.router);
 
 
-//--Route 
+//--route pour customers 
 
 
 app.post('/customers/fake', function(req, res){
@@ -107,7 +107,7 @@ app.post('/products/update', function(){
 
 });
 
-//route Orders
+//route orders
 app.post('/orders', function(req, res){
 	AddDataOrders(dbOrders,req);
 });
@@ -125,7 +125,7 @@ app.post('/orders/update', function(req, res){
 	UpdateData(dbOrders, add);
 });
 
-
+// verificator express
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
 // fs.writeFile sert a réecrire le fichier.
@@ -163,6 +163,7 @@ function AddData(dir,req){
 			"phoneNumber" : data.phoneNumber,
 			"registrationDate" : now.format('MMMM Do YYYY'),
 		 };
+		 //node FS
 		nodefs.readFile(dir,function(err,data)
 		{
 		 	obj= JSON.parse(data);
@@ -175,33 +176,22 @@ function AddData(dir,req){
 		 	});
 		});
 
-	var data = req.body;
-	var addCustomer= {
-		"gender" : data.gender,
-	 	"name" : data.name,
-		"firstName" : data.firstName,
-		"birthdate" : data.birthdate,
-		"city": data.city,
-		"zipCode": data.zipCode,
-		"address" : data.address,
-		"phoneNumber" : data.phoneNumber,
-		"registrationDate" : now.format('MMMM Do YYYY'),
-	 	};
-	 nodefs.readFile(dir,function(err,data){
+		var data = req.body;
+		var addCustomer= {
+			"gender" : data.gender,
+	 		"name" : data.name,
+			"firstName" : data.firstName,
+			"birthdate" : data.birthdate,
+			"city": data.city,
+			"zipCode": data.zipCode,
+			"address" : data.address,
+			"phoneNumber" : data.phoneNumber,
+			"registrationDate" : now.format('MMMM Do YYYY'),
+	 		};
 
-	 
-
-	 	obj= JSON.parse(data);
-	 	if(err)throw err;		
-	 obj.push(addCustomer);
-		json=JSON.stringify(obj);
-	 nodefs.writeFile(dir,json, function(err){
-	 	if(err) throw err;
-	 });
-	 });
+		}
 
 	}
-
 }
 function AddDataOrders(dir,req){
 	var data = req.body;
@@ -228,7 +218,7 @@ function AddDataOrders(dir,req){
 	 	if(err) throw err;
 	 });
 	 });
-	}
+}
 function AddDataProducts(dir,req){
 	var data = req.body;
 	var addProducts= {
