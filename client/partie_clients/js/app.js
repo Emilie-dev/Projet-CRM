@@ -123,6 +123,35 @@ function verifPhoneNumber(champ) {
    }  
 }
 
+function verifForm(f){
+
+   var genderOk = verifGender(f.gender);
+   var firstNameOk = verifFirstName(f.firstName);
+   var nameOk = verifName(f.name);
+   var cityOk = verifCity(f.city);
+   var addressOk = verifAdress(f.address);
+   var birthDateOk = verifBirthdate(f.birthdate);
+   var zipCodeOk = verifZipCode(f.zipCode);
+   var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
+
+   if(genderOk && firstNameOk && nameOk && cityOk && addressOk && birthdateOk && zipCodeOk)
+      return true;
+   else
+   {
+      alert("Veuillez remplir correctement tous les champs");
+      return false;
+   }
+}
+
+$("submit").on( 'click',function (event) {
+   event.preventDefault();
+   verifForm()
+   if(true){
+      alert("Votre client viens d'être enregistrer dans la base de données"),
+      $('form input').val("");
+   } alert('Verifier le formulaire')
+
+})
 
 $(function(){
   $("#customerTable").tablesorter();
