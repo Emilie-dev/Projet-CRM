@@ -47,7 +47,20 @@ var dbProducts= 'products.json';
 //app.use(app.router);
 
 
+
 //--route pour customers 
+
+
+
+
+
+
+
+
+
+
+//--Route 
+
 
 
 app.post('/customers/fake', function(req, res){
@@ -75,7 +88,7 @@ app.post('/customers', function(req, res){
 });
 
 app.get('/customer/getAll', function(req, res){
-	fs.readFile('customers.json',function read(err,data){
+	nodefs.readFile('customers.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
@@ -89,12 +102,12 @@ app.post('/customers/update', function(req, res){
 });
 //route produits
 app.post('/products', function(req, res){
-			AddDataProducts(dbProducts,req)
+	AddDataProducts(dbProducts,req)
 });
 
 
 app.get('/products/getAll', function(req, res){
-	fs.readFile('products.json',function read(err,data){
+	nodefs.readFile('products.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
@@ -113,7 +126,7 @@ app.post('/orders', function(req, res){
 });
 
 app.get('/orders/getAll', function(req, res){
-	fs.readFile('orders.json',function read(err,data){
+	nodefs.readFile('orders.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
