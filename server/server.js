@@ -16,11 +16,23 @@ var bodyparser = require('body-parser');
 
 
 
-
-
-
-
 //-- Middleware
+
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(expressValidator());
+
+
+
+app.listen(3000, function(){	
+});
+
+var obj=[];
+var json= JSON.stringify(obj);
+var dbCustomers= 'customers.json';
+var dbOrders = 'orders.json';
+var dbProducts= 'products.json';
+
+
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
@@ -28,6 +40,11 @@ app.use(expressValidator());
 app.use(app.router);
 
 
+var obj=[];
+var json= JSON.stringify(obj);
+var dbCustomers= 'customers.json';
+var dbOrders = 'orders.json';
+var dbProducts= 'products.json';
 
 
 //route 
@@ -74,7 +91,7 @@ app.get('/customer/getAll', function(req, res){
 
 app.post('/customers/update', function(req, res){
 
-	var add= req.body.db;
+	var add= req.body.bodyparser;
 	UpdateData(dbCustomers, add);
 	
 
@@ -119,9 +136,6 @@ app.post('/orders/update', function(){
 	res.send('/orders/update');
 });
 
-app.listen(3000, function(){
-	console.log('server ok');
-});
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
 // fs.writeFile sert a réecrire le fichier.
