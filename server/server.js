@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 
 
-var faker = require('faker/locale/fr');
+var faker = require('faker');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
