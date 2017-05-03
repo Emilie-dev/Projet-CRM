@@ -16,14 +16,22 @@ var expressValidator = require('express-validator');
 
 
 
-
-
-
-
 //-- Middleware
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(expressValidator());
+
+
+
+app.listen(3000, function(){	
+});
+
+var obj=[];
+var json= JSON.stringify(obj);
+var dbCustomers= 'customers.json';
+var dbOrders = 'orders.json';
+var dbProducts= 'products.json';
+
 
 
 
@@ -117,9 +125,6 @@ app.post('/orders/update', function(){
 	res.send('/orders/update');
 });
 
-app.listen(3000, function(){
-	console.log('server ok');
-});
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
 // fs.writeFile sert a réecrire le fichier.
