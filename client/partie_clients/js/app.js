@@ -1,3 +1,5 @@
+
+console.log("Hello");
 var clientArr = [];
 
 
@@ -187,21 +189,17 @@ function delObject(nbr){
 
 }
 
+
 $(function(){
-  $("#customerTable").tablesorter();
+	$("#customerTable").tablesorter();
 });
-
-
 
 var customers=[];
 
 function recept(){
 	$.ajax({
-		url:"http://192.168.1.152/customers/",
-		data: {
-		task: "get",
-		key: "customers",
-		},
+		url:"http://192.168.1.152/customers/getAll",
+		
 		success : function(data){
 		console.log(data);
 		}
@@ -216,9 +214,12 @@ function recept(){
 
 function load(tab){
 	for (i=0;i<tab.length;i++){
+		
 		$("tbody").append("<tr></tr>");
-		$("tr").append("");
+		$("tr").append("test");
 		}		
-}
+};
+
+
 
 
