@@ -1,6 +1,6 @@
 
 console.log("Hello");
-var clientArr = [];
+var customers = [];
 
 
 function surligne(champ, erreur){
@@ -151,7 +151,7 @@ function verifForm(f){
 
 $("submit").on( 'click',function (event) {
    event.preventDefault();
-   verifForm()
+   verifForm();
    if(true){
       alert("Votre client viens d'être enregistrer dans la base de données");
       $('form input').val("");
@@ -166,7 +166,7 @@ function getObject(){
 		method: 'GET',
 		success: function(data){
 			console.log(JSON.parse(data));
-			clientArr = JSON.parse(data);
+			customers = JSON.parse(data);
 			// affiche(d);
 		}
 	});
@@ -174,16 +174,16 @@ function getObject(){
 }
 
 function delObject(nbr){
-	console.log(clientArr);
-	clientArr.splice(nbr,1);
-	console.log(clientArr);
+	console.log(customers);
+	customers.splice(nbr,1);
+	console.log(customers);
 	
 
 	$.ajax({
 		url:'/customers/update',
 		method: 'POST',
 		data:{
-			db: JSON.stringify(clientArr)
+			db: JSON.stringify(customers)
 		}
 	});
 
@@ -198,7 +198,7 @@ var customers=[];
 
 function recept(){
 	$.ajax({
-		url:"http://192.168.1.152/customers/getAll",
+		url:"/customer/getAll",
 		
 		success : function(data){
 		console.log(data);
@@ -206,7 +206,7 @@ function recept(){
 	})
 	.done(function(data){
 		customers=JSON.parse(data);
-		console.log(customers);
+		// console.log(customers);
 		load(customers);				
 	});
 }
@@ -214,12 +214,12 @@ function recept(){
 
 function load(tab){
 	for (i=0;i<tab.length;i++){
-		
-		$("tbody").append("<tr></tr>");
-		$("tr").append("test");
+		$('tbody').append("<tr><td>"+tab[i].gender+"</td><td>"+tab[i].firstName+"</td><td>"+tab[i].name+"</td><td>"+tab[i].city+"</td><td>"+tab[i].address+"</td><td>"+tab[i].birthdate+"</td><td>"+tab[i].registrationDate+"</td><td>"+tab[i].zipCode+"</td><td>"+tab[i].phoneNumber+"</td></tr>");
 		}		
-};
+}
 
-
+$(document).ready(function(){
+   recept();
+});
 
 
