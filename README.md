@@ -2,30 +2,33 @@
 ```
 ├── _README.md
 ├── _client/
-|   ├── _partie_clients/
-|	|	├──_js/
-|	|	|  ├──_app.js
-|	|	├──_css/
-|	|	   ├──_style.css
+|	├── _package.json
+|	├── _node_modules/...
+|	├── _partie_clients/
+|	|   ├──clients.html
+|	|   ├──_js/
+|	|   |   └──_app.js
+|	|   └──_css/
+|	|      └──_style.css
 |	├── _partie_commandes
-|	|	├──_js/
-|	|	|  ├──_app.js
-|	|	├──_css/
-|	|	   ├──_style.css
+|	|   ├──_js/
+|	|   |  └──_app.js
+|	|   └──_css/
+|	|      └──_style.css
 |	├── _partie_produits
-|	|	├──_js/
-|	|	|  ├──_app.js
-|	|	├──_css/
-|	|	   ├──_style.css
-|   ├── _index.html
+|	|   ├──_js/
+|	|   |   └──_app.js
+|	|   └──_css/
+|	|      └──_style.css
+|	├── _index.html
 |	├── _js
-|   ├── _style.css
-|   └── Admin.ico
+|	├── _style.css
+|	└── Admin.ico
 |
 |
 ├── server ??
 |
-└── index.html
+└─
 ```
 
 

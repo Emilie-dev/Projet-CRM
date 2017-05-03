@@ -12,9 +12,9 @@
 	
 	<ul>
 		<li><img src="../Admin.ico"></></li>
-		<li><a href="default.asp">CLIENTS</a></li>
-		<li><a href="news.asp">PRODUITS</a></li>
-		<li><a href="contact.asp">COMMANDES</a></li>
+		<li><a href="#">CLIENTS</a></li>
+		<li><a href="..client/partie_produits/produits.html">PRODUITS</a></li>
+		<li><a href="..client/partie_commandes/commandes.html">COMMANDES</a></li>
 	</ul>
 
 	<!-- FORMULAIRE -->
@@ -22,7 +22,7 @@
 	<h2>FORMULAIRE A REMPLIR</h2>
 
 
-	<form action="" method="">
+	<form action="/customers" method="POST">
 
 		<div>
 			<label for="gender">TITRE</label>
@@ -32,31 +32,27 @@
 			<input id="firstName" type="" name="firstName"/>
 
 			<label for="name">NOM</label>
-			<input id="name" type="" name="name"/>
+			<input id="name" type="text" name="name"/>
 		</div>
 
 		<div>
 			<label for="city">VILLE</label>
-			<input id="city" type="" name="city"/>
+			<input id="city" type="text" name="city"/>
 
 			<label for="adress">ADRESSE</label>
-			<input id="adress" type="" name="adress"/>
+			<input id="adress" type="text" name="adress"/>
 
-			<label for="birthDate">DATE DE NAISSANCE</label>
-			<input id="birthDate" type="" name="birthDate"/>	
+			<label for="birthDate">NAISSANCE</label>
+			<input id="birthDate" type="text" name="birthDate"/>	
 		</div>
-		<div>
-			<label for="registrationDate">DATE D'INSCRIPTION</label>
-			<input id="registrationDate" type="" name="registrationDate"/>
 
-		</div>
 		<div>
 
 			<label for="zipCode">CODE POSTAL</label>
-			<input id="zipCode" type="" name="zipCode"/>
+			<input id="zipCode" type="text" name="zipCode"/>
 
 			<label for="phoneNumber">N°TEL</label>
-			<input id="phoneNumber" type="" name="phoneNumber"/>
+			<input id="phoneNumber" type="text" name="phoneNumber"/>
 
 
 			<button type="submit">ENREGISTRER CLIENT</button>
