@@ -1,3 +1,5 @@
+var clientArr = [];
+
 
 function surligne(champ, erreur){
 
@@ -124,7 +126,39 @@ function verifPhoneNumber(champ) {
 }
 
 
+
+function getObject(){
+	$.ajax({
+		url:'/customer/getAll',
+		method: 'GET',
+		success: function(data){
+			console.log(JSON.parse(data));
+			clientArr = JSON.parse(data);
+			// affiche(d);
+		}
+	});
+
+}
+
+function delObject(nbr){
+	console.log(clientArr);
+	clientArr.splice(nbr,1);
+	console.log(clientArr);
+	
+
+	$.ajax({
+		url:'/customers/update',
+		method: 'POST',
+		data:{
+			db: JSON.stringify(clientArr)
+		}
+	});
+
+}
+
 $(function(){
   $("#customerTable").tablesorter();
 });
+
+
 

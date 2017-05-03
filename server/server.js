@@ -14,7 +14,7 @@ var nodefs = require('fs');
 var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
 
-
+var dbCustomers ='customers.json';
 
 
 
@@ -58,12 +58,12 @@ app.post('/products', function(req, res){
 app.post('/customers', function(req, res){
 	//.log(req.body);
 	AddData(dbCustomers, req);
-	//res.status(200).end();
+	res.status(200).end();
 });
 
 //routeGetClients
 app.get('/customer/getAll', function(req, res){
-	fs.readFile('customers.json',function read(err,data){
+	nodefs.readFile('customers.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
@@ -125,6 +125,7 @@ app.listen(3000, function(){
 // fs.writeFile sert a réecrire le fichier.
 function AddData(dir,req){
 	var data = req.body;
+	var dd = new Date();
 	var addCustomer= {
 		"gender" : data.gender,
 	 	"name" : data.name,
@@ -134,7 +135,7 @@ function AddData(dir,req){
 		"zipCode": data.zipCode,
 		"address" : data.address,
 		"phoneNumber" : data.phoneNumber,
-		"registrationDate" : now.format('MMMM Do YYYY'),
+		"registrationDate" : dd.getTime(),
 	 	};
 	 nodefs.readFile(dir,function(err,data){
 	 	obj= JSON.parse(data);
