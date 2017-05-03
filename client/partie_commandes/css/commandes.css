@@ -36,3 +36,22 @@ img {
 	width: 40px;
 	height: 35px
 }
+
+h2 {
+	text-decoration: underline;
+	text-align: center;
+}
+
+
+table {
+	margin-top: 150px;
+	margin-bottom: 50px;
+	border-collapse:collapse;
+	width:100%;
+}
+
+th, td {
+	border:1px solid black;
+	width:5%;
+	text-align: center;
+}
