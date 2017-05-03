@@ -1,9 +1,8 @@
 //web server
 var express = require('express');
 var app = express();
-
 var momentjs = require('moment');
-var faker = require('faker/locale/fr');
+var faker = require('faker');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
 
@@ -16,8 +15,15 @@ var bodyparser = require('body-parser');
 
 app.listen(3000, function(){
 	console.log('server ok');
-});
 
+// var expressValidator = require('express-validator');
+
+
+
+//-- Middleware
+
+//app.use(bodyparser.urlencoded({ extended: false }));
+//app.use(expressValidator());
 
 
 //-- Middleware
@@ -25,20 +31,41 @@ app.listen(3000, function(){
 //app.use(bp.urlencoded({ extended: false }));
 //app.use(expressValidator());
 
+var obj=[];
+var json= JSON.stringify(obj);
+var dbCustomers= 'customers.json';
+var dbOrders = 'orders.json';
+var dbProducts= 'products.json';
+
+
+
+
+// app.use(bp.urlencoded({ extended: false }));
+// app.use(expressValidator());
+
+app.use(express.static(__dirname + '/../client/'));
+app.use(bodyparser.urlencoded({ extended: false }));
+//app.use(expressValidator());
+//app.use(app.router);
+
+
+
 
 
 //route 
 
+
 app.get('/customers', function(req, res){
+
 // Fake User
 var fakeCustomers = {
 	"gender": faker.name.prefix(),
-	"firstName": faker.name.firstName(),
+	"firstname": faker.name.firstName(),
 	"lastname": faker.name.lastName(),
  	"city": faker.address.city(),
  	"address": faker.address.streetAddress(),
  	"birthdate": faker.date.past(),
- 	"registrationDate": new date().getTime(),
+ 	"registrationDate": Math.round(new Date().getTime()/1000.0),
  	"zipCode": faker.address.zipCode(),
  	"phoneNumber": faker.phone.phoneNumber(),
 
@@ -46,14 +73,23 @@ var fakeCustomers = {
 res.send(fakeCustomers);
 });
 
+
 //route post-produits
 app.post('/products', function(req, res){
 });
 
 
 
+
 app.post('/customers', function(req, res){
 	AddData(dbCustomers, req);
+
+});
+
+app.post('/customers', function(req, res){
+	//.log(req.body);
+	AddData(dbCustomers, req);
+	//res.status(200).end();
 });
 
 //routeGetClients
@@ -62,12 +98,20 @@ app.get('/customer/getAll', function(req, res){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
+
 	 })
+
+	 });
+
 });
 
 app.post('/customers/update', function(req, res){
 
+
 	var add= req.body.db;
+
+	var add= req.body.bodyparser;
+
 	UpdateData(dbCustomers, add);
 	
 
@@ -113,10 +157,12 @@ app.post('/orders/update', function(req, res){
 	res.send('/orders/update');
 });
 
+
 //route delete commandes
 app.post('/orders/delete', function(req, res){
 	res.send('/orders/delete');
 });
+
 
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
@@ -135,14 +181,17 @@ function AddData(dir,req){
 		"registrationDate" : now.format('MMMM Do YYYY'),
 	 	};
 	 nodefs.readFile(dir,function(err,data){
-	 	obj= JSON.parse(data)
+
+	 
+
+	 	obj= JSON.parse(data);
 	 	if(err)throw err;		
-	 obj.push(addCustomer)
-		json=JSON.stringify(obj)
+	 obj.push(addCustomer);
+		json=JSON.stringify(obj);
 	 nodefs.writeFile(dir,json, function(err){
 	 	if(err) throw err;
 	 });
-	 })	
+	 });
 	}
 
 function UpdateData(dir, add){
@@ -151,3 +200,4 @@ function UpdateData(dir, add){
 	 }); 	
 	
 	}
+
