@@ -161,12 +161,12 @@ $("submit").on( 'click',function (event) {
 
 function getObject(){
    $.ajax({
-      url:'/customer/getAll',
+      url:'192.168.1.180:3000/customers/getAll',
       method: 'GET',
       success: function(data){
          console.log(JSON.parse(data));
          customers = JSON.parse(data);
-         // affiche(d);
+         affiche(d);
       }
    });
 
@@ -179,7 +179,7 @@ function delObject(nbr){
    
 
    $.ajax({
-      url:'/customers/update',
+      url:'192.168.1.180:3000/customers/update',
       method: 'POST',
       data:{
          db: JSON.stringify(customers)
@@ -197,7 +197,7 @@ var customers=[];
 
 function recept(){
    $.ajax({
-      url:"/customer/getAll",
+      url:"192.168.1.180:3000/customers/getAll",
       
       success : function(data){
       console.log(data);
@@ -205,7 +205,7 @@ function recept(){
    })
    .done(function(data){
       customers=JSON.parse(data);
-      // console.log(customers);
+      console.log(customers);
       load(customers);           
    });
 }
