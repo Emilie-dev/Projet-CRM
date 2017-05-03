@@ -3,6 +3,7 @@
 <head>
 	<title>Produits</title>
 	<link rel="stylesheet" type="text/css" href="css/produits.css">
+	<script type="text/javascript" src="../node_modules/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
@@ -18,7 +19,7 @@
 
 	<h2>FORMULAIRE PRODUITS</h2>
 
-	<form action="/customers" method="POST">
+	<form action="/products" method="POST">
 	   <div>
 	      <label for="name">Nom</label>
 	      <input id="name" type="text" name="name"></input>
@@ -52,13 +53,20 @@
           <button type="submit">ENREGISTRER PRODUITS</button>
        </div>
     </form>
+<center>
+    <form action="/products" method="POST">
 
+   		<textarea cols="80" class="ckeditor" id="editeur" name="editeur" rows="10"></textarea>
+
+    </form>
+</center>
 
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 
 	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
 
 	<script type="text/javascript" src="../node_modules/validator/validator.min.js"></script>
+
 
 	<script type="text/javascript" src="js/produits.js"></script>
 
