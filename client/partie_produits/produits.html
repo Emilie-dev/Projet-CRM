@@ -4,6 +4,7 @@
 	<title>Produits</title>
 	<link rel="stylesheet" type="text/css" href="css/produits.css">
 	<script type="text/javascript" src="../node_modules/ckeditor/ckeditor.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.8/css/theme.default.min.css" integrity="sha256-kZJ4kB78IbXuxMtCpmaXzii8vxEKtu8pjicH62E0/qM=" crossorigin="anonymous" />	
 </head>
 <body>
 
@@ -53,6 +54,24 @@
           <button type="submit">ENREGISTRER PRODUITS</button>
        </div>
     </form>
+
+    <table id="produitsTable" class="tablesorter">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Lieu</th>
+				<th>Poids</th>
+				<th>Prix</th>
+				<th>Description</th>
+				<th>Référence</th>
+				<th>Stock</th>
+				<th>Taille</th>
+			</tr>	
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
     <form action="/products" method="POST">
 
    		<textarea cols="80" class="ckeditor" id="editeur" name="editeur" rows="10"></textarea>

@@ -61,3 +61,7 @@ $(document).ready(function(){
    getObject();
    load(products);
 });
+
+$(function(){
+	$("#produitsTable").tablesorter();
+});
