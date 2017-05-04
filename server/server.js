@@ -211,6 +211,7 @@ function AddDataProducts(dir,req){
 		"height": data.height,
 		"weight" : data.weight,
 		"ref" : data.ref,
+		"richText": data.richText,
 	 	};
 	 nodefs.readFile(dir,function(err,data){
 
