@@ -128,29 +128,30 @@ function verifPhoneNumber(champ) {
    }  
 }
 
-function verifForm(f){
+function verifForm(){
 
-   var genderOk = verifGender(f.gender);
-   var firstNameOk = verifFirstName(f.firstName);
-   var nameOk = verifName(f.name);
-   var cityOk = verifCity(f.city);
-   var addressOk = verifAdress(f.address);
-   var birthDateOk = verifBirthdate(f.birthdate);
-   var zipCodeOk = verifZipCode(f.zipCode);
-   var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
+  
+   var firstNameOk = verifFirstName; 
+   var nameOk = verifName;
+   var birthDateOk = verifBirthdate;
+   
 
-   if( firstNameOk && nameOk && birthdateOk)
+   if( firstNameOk && nameOk && birthDateOk){
       return true;
+   }
    else
    {
-      alert("Veuillez remplir correctement tous les champs");
+           alert("Veuillez remplir correctement tous les champs");
       return false;
    }
+
 }
 
-$("submit").on( 'click',function (event) {
+$("button").on( 'click',function (event) {
+   console.log('button click');
    event.preventDefault();
    verifForm();
+   console.log(verifForm())
    if(true){
       alert("Votre client viens d'être enregistrer dans la base de données");
       $('form input').val("");
