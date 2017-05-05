@@ -127,111 +127,182 @@ function verifPhoneNumber(champ) {
 
    }  
 }
-
-function verifForm(f){
-
-   var genderOk = verifGender(f.gender);
-   var firstNameOk = verifFirstName(f.firstName);
-   var nameOk = verifName(f.name);
-   var cityOk = verifCity(f.city);
-   var addressOk = verifAdress(f.address);
-   var birthDateOk = verifBirthdate(f.birthdate);
-   var zipCodeOk = verifZipCode(f.zipCode);
-   var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
-
-   if(firstNameOk && nameOk && birthdateOk)
-      return true;
-   else
-   {
-      alert("Veuillez remplir correctement tous les champs");
-      return false;
-   }
-}
-
-$("#submit").on( 'click',function (event) {
-   event.preventDefault();
-   verifForm();
-   if(true){
-      alert("Votre client viens d'être enregistrer dans la base de données");
-      $('form input').val("");
-   } alert('Verifier le formulaire');
-
-});
+function verifForm(event){
 
 
-function getObject(){
-   $.ajax({
-      url:'/customer/getAll',
-      method: 'GET',
-      success: function(data){
-         console.log(JSON.parse(data));
-         customers = JSON.parse(data);
-         affiche(d);
-      }
-   });
 
-}
-
-function delObject(nbr){
-   console.log(customers);
-   customers.splice(nbr,1);
-   console.log(customers);
-   
-
-   $.ajax({
-      url:'/customers/update',
-      method: 'POST',
-      data:{
-         db: JSON.stringify(customers)
-      }
-   }).done(function(data) {
-      console.log(data);
-      if ( data ) {
-         alert("Success!");
-      }else{
-         alert("Error!");      
-      }
-   });
-}
+    var errors= {};
 
 
-$(function(){
-   $("#customerTable").tablesorter();
-});
-
-var customers=[];
-
-function recept(){
-   $.ajax({
-      url:"/customer/getAll",
-      
-      success : function(data){
-         console.log(data);
-      }
-   })
-   .done(function(data){
-      customers=JSON.parse(data);
-      console.log(customers);
-      load(customers);           
-   });
-}
-
-
-function load(tab){
-
-   $('tbody').html(' ');
-   for (i=0;i<tab.length;i++){
-
-    $('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><img src="../res/poubelle.png" class="sup" data-ind="'+i+'"/></td><td><img src="../res/modifier.png" class="edt" data-ind="'+i+'"></img></td></tr>');
+   if(validator.isEmpty("" + $('#gender').val())){
+    errors.gender ="error";
  }
 
- $('.sup').on('click', function(){
-   var indAsup= $(this).data('ind');
-   delObject(indAsup);
-   recept();         
-});	
+ if(validator.isEmpty("" + $('#firstName').val())){
+    errors.gender ="error";
+ }
+
+ if(validator.isEmpty("" + $('#name').val())){
+    errors.gender ="error";
+ }
+
+
+ if(validator.isEmpty("" + $('#city').val())){
+    errors.gender ="error";
+ }
+
+ if(validator.isEmpty("" + $('#address').val())){
+    errors.gender ="error";
+ }
+
+
+ if(validator.isEmpty("" + $('#birthdate').val())){
+    errors.gender ="error";
+ }
+
+ if(validator.isEmpty("" + $('#zipCode').val())){
+    errors.gender ="error";
+ }
+
+ if(validator.isEmpty("" + $('#phoneNumber').val())){
+    errors.gender ="error";
+ }
+
+
+ return {errors: errors, isValid : $.isEmptyObject(errors)};
+
+
 }
 
-$(document).ready(function(){
+
+
+$("button").on( 'click',function (event) {
+
+   var resultValid =  verifForm();
+   console.log(resultValid);
+   if(! resultValid.isValid){
+      event.preventDefault();
+      alert("veuillez verifier tout les champs")
+   }
+})
+
+   function getObject(){
+      $.ajax({
+         url:'/customer/getAll',
+         method: 'GET',
+         success: function(data){
+            console.log(JSON.parse(data));
+            customers = JSON.parse(data);
+            affiche(d);
+         }
+      });
+
+   }
+
+   function delObject(nbr){
+      console.log(customers);
+      customers.splice(nbr,1);
+      console.log(customers);
+
+
+      $.ajax({
+         url:'/customers/update',
+         method: 'POST',
+         data:{
+            db: JSON.stringify(customers)
+         }
+      }).done(function(data) {
+         console.log(data);
+         if ( data ) {
+            alert("Success!");
+         }else{
+            alert("Error!");      
+         }
+      });
+   }
+
+
+   $(function(){
+      $("#customerTable").tablesorter();
+   });
+
+
+
+
+
+   var customers=[];
+
+   function recept(){
+      $.ajax({
+         url:"/customer/getAll",
+
+         success : function(data){
+         }
+      })
+      .done(function(data){
+         customers=JSON.parse(data);
+         console.log(customers);
+         load(customers);           
+      });
+   }
+
+
+   function load(tab){
+
+      $('tbody').html(' ');
+
+      for (i=0;i<tab.length;i++){
+
+       $('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><img src="../res/poubelle.png" class="sup" data-ind="'+i+'"/></td><td><img src="../res/modifier.png" class="edt" data-ind="'+i+'"></img></td></tr>');
+    }
+
+    $('.sup').on('click', function(){
+      var indAsup= $(this).data('ind');
+      delObject(indAsup);
+      recept();         
+   });	
+
+ }
+
+ $(document).ready(function(){
    recept();
+   $('tbody').delegate('.edt','click',function(){
+      var customersEdit = $(this).data('ind');
+      $(".validate").css("display","none");
+      $(".edit").css("display","inline-block");
+      $("#gender").val(customers[customersEdit].gender);
+      $("#name").val(customers[customersEdit].name);
+      $("#firstName").val(customers[customersEdit].firstName);
+      $("#birthdate").val(customers[customersEdit].birthdate);
+      $("#city").val(customers[customersEdit].city);
+      $("#zipCode").val(customers[customersEdit].zipCode);
+      $("#address").val(customers[customersEdit].address);
+      $("#phoneNumber").val(customers[customersEdit].phoneNumber);
+   });
+   $(".edit").click(function(e){
+      e.preventDefault();
+      var customersUpdate ={
+         "gender": $("#gender").val(),
+         "name": $("#name").val(),
+         "firstName": $("#firstName").val(),
+         "birthdate": $("#birthdate").val(),
+         "city": $("#city").val(),
+         "zipCode": $("#zipCode").val(),
+         "address": $("#address").val(),
+         "phoneNumber": $("#phoneNumber").val(),
+      };
+
+      $.ajax({
+         method: "POST",
+         url: "/customers/update",
+         data: { customersUpdate,
+
+            success: function(data){
+               recept();
+               $(".edit").css("display","none");
+               $(".validate").css("display","inline-block");
+            }
+         } 
+      });
+   }) ;
 });
