@@ -128,7 +128,7 @@ function verifPhoneNumber(champ) {
    }  
 }
 
-<<<<<<< HEAD
+
 
 
 function verifForm(event){
@@ -136,25 +136,6 @@ function verifForm(event){
 
    if(validator.isEmpty("" + $('#gender').val())){
       errors.gender ="rater";
-=======
-function verifForm(f){
-
-   var genderOk = verifGender(f.gender);
-   var firstNameOk = verifFirstName(f.firstName);
-   var nameOk = verifName(f.name);
-   var cityOk = verifCity(f.city);
-   var addressOk = verifAdress(f.address);
-   var birthDateOk = verifBirthdate(f.birthdate);
-   var zipCodeOk = verifZipCode(f.zipCode);
-   var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
-
-   if(firstNameOk && nameOk && birthdateOk)
-      return true;
-   else
-   {
-      alert("Veuillez remplir correctement tous les champs");
-      return false;
->>>>>>> 4428aa6936f0e3304b43fb5135f77ff716238f1f
    }
 
 
@@ -202,11 +183,7 @@ function delObject(nbr){
       data:{
          db: JSON.stringify(customers)
       }
-<<<<<<< HEAD
-
-=======
->>>>>>> 4428aa6936f0e3304b43fb5135f77ff716238f1f
-   }).done(function(data) {
+      }).done(function(data) {
       console.log(data);
       if ( data ) {
          alert("Success!");
@@ -214,11 +191,6 @@ function delObject(nbr){
          alert("Error!");      
       }
    });
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 4428aa6936f0e3304b43fb5135f77ff716238f1f
 }
 
 
@@ -237,12 +209,6 @@ function recept(){
       url:"/customer/getAll",
       
       success : function(data){
-<<<<<<< HEAD
-
-      console.log(data);
-=======
-         console.log(data);
->>>>>>> 4428aa6936f0e3304b43fb5135f77ff716238f1f
       }
    })
    .done(function(data){
@@ -256,31 +222,59 @@ function recept(){
 function load(tab){
 
    $('tbody').html(' ');
-<<<<<<< HEAD
 
 	for (i=0;i<tab.length;i++){
 
 		$('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><img src="../res/poubelle.png" class="sup" data-ind="'+i+'"/></td><td><img src="../res/modifier.png" class="edt" data-ind="'+i+'"></img></td></tr>');
-		}
-=======
-   for (i=0;i<tab.length;i++){
->>>>>>> 4428aa6936f0e3304b43fb5135f77ff716238f1f
+   }
 
-    $('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><img src="../res/poubelle.png" class="sup" data-ind="'+i+'"/></td><td><img src="../res/modifier.png" class="edt" data-ind="'+i+'"></img></td></tr>');
- }
-
-<<<<<<< HEAD
-      });	
-
-=======
  $('.sup').on('click', function(){
    var indAsup= $(this).data('ind');
    delObject(indAsup);
    recept();         
 });	
->>>>>>> 4428aa6936f0e3304b43fb5135f77ff716238f1f
+
 }
 
 $(document).ready(function(){
    recept();
+   $('tbody').delegate('.edt','click',function(){
+      var customersEdit = $(this).data('ind');
+      $(".validate").css("display","none");
+      $(".edit").css("display","inline-block");
+      $("#gender").val(customers[customersEdit].gender);
+      $("#name").val(customers[customersEdit].name);
+      $("#firstName").val(customers[customersEdit].firstName);
+      $("#birthdate").val(customers[customersEdit].birthdate);
+      $("#city").val(customers[customersEdit].city);
+      $("#zipCode").val(customers[customersEdit].zipCode);
+      $("#address").val(customers[customersEdit].address);
+      $("#phoneNumber").val(customers[customersEdit].phoneNumber);
+   });
+   $(".edit").click(function(e){
+      e.preventDefault();
+      var customersUpdate ={
+            "gender": $("#gender").val(),
+            "name": $("#name").val(),
+            "firstName": $("#firstName").val(),
+            "birthdate": $("#birthdate").val(),
+            "city": $("#city").val(),
+            "zipCode": $("#zipCode").val(),
+            "address": $("#address").val(),
+            "phoneNumber": $("#phoneNumber").val(),
+         };
+            
+            $.ajax({
+               method: "POST",
+               url: "/customers/update",
+               data: { customersUpdate,
+
+                     success: function(data){
+                        recept();
+                        $(".edit").css("display","none");
+                        $(".validate").css("display","inline-block");
+                     }
+                  } 
+               });
+   }) ;
 });
