@@ -109,6 +109,13 @@ app.post('/products/update', function(){
 
 });
 
+//route delete/suppr clients
+app.post('/customers/delete', function(req, res){
+	res.send('/customers/delete');
+});
+
+
+
 //route Orders
 app.post('/orders', function(req, res){
 	AddDataOrders(dbOrders,req);
