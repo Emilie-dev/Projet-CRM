@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CRM</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="../node_modules/tablesorter/dist/css/theme.default.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.8/css/theme.default.min.css" integrity="sha256-kZJ4kB78IbXuxMtCpmaXzii8vxEKtu8pjicH62E0/qM=" crossorigin="anonymous" />	
+</head>
+<body>
+
+	<!-- HEADER -->
+	<ul>
+		<li><img src="../Admin.ico"></li>
+		<li><a href="../partie_clients/clients.html">CLIENTS</a></li>
+		<li><a href="../partie_produits/produits.html">PRODUITS</a></li>
+		<li><a href="../partie_commandes/commandes.html">COMMANDES</a></li>
+	</ul>
+	
+	<!-- FORMULAIRE -->
+	
+	<h2>FORMULAIRE A REMPLIR</h2>
+
+
+	<form action="/customers" method="POST">
+
+		<div>
+			<label for="gender">TITRE</label>
+			<input id="gender" type="text" name="gender" onblur="verifGender(this)" />
+
+			<label for="firtName">PRENOM</label>
+			<input id="firstName" type="" name="firstName" onblur="verifFirstName(this)" />
+
+			<label for="name">NOM</label>
+
+			<input id="name" type="text" name="name" onblur="verifName(this)" />
+
+		</div>
+
+		<div>
+			<label for="city">VILLE</label>
+
+			<input id="city" type="text" name="city" onblur="verifCity(this)"/>
+
+
+			<label for="address">ADRESSE</label>
+			<input id="address" type="text" name="address" onblur="verifAdress(this)"/>
+
+
+	
+
+			<label for="birthdate">NAISSANCE</label>
+			<input id="birthdate" type="text" name="birthdate" onblur="verifBirthdate(this)"/>	
+
+
+		</div>
+
+		<div>
+
+			<label for="zipCode">CODE POSTAL</label>
+
+			<input id="zipCode" type="text" name="zipCode" onblur="verifZipCode(this)" />
+
+			<label for="phoneNumber">N°TEL</label>
+			<input id="phoneNumber" type="text" name="phoneNumber" onblur="verifPhoneNumber(this)" />
+
+		
+			<button class ="validate" type="submit">ENREGISTRER CLIENT</button>
+			<button class = "edit" type= "submit">MODIFIER CLIENT</button>
+
+		</div>
+	</form>
+
+	<table id="customerTable" class="tablesorter">
+		<thead>
+			<tr>
+				<th>TITRE</th>
+				<th>PRENOM</th>
+				<th>NOM</th>
+				<th>VILLE</th>
+				<th>ADRESSE</th>
+				<th>DATE DE NAISSANCE</th>
+				<th>DATE D'INSCRIPTION</th>
+				<th>CODE POSTAL</th>
+				<th>N°TEL</th>
+				<th>SUPPRIMER</th>
+				<th>MODIFIER</th>
+			</tr>	
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+
+	<footer>
+
+	</footer>
+
+	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="../node_modules/moment/moment.js"></script>
+	
+	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="../node_modules/validator/validator.js"></script>
+
+
+
+
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
