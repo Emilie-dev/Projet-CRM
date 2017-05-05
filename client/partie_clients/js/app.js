@@ -1,6 +1,6 @@
 console.log("Hello");
 
-
+recept();
 
 function surligne(champ, erreur){
 
@@ -148,7 +148,7 @@ function verifForm(f){
    }
 }
 
-$("submit").on( 'click',function (event) {
+$("#submit").on( 'click',function (event) {
    event.preventDefault();
    verifForm();
    if(true){
