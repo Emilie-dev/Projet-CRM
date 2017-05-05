@@ -132,6 +132,7 @@ function verifForm(){
 	}
 }
 $('submit').on("click",function(event){
+
 	verifForm()
 	if(true){
 		alert("Votre client viens d'être enregistrer dans la base de données"),
@@ -139,6 +140,7 @@ $('submit').on("click",function(event){
 	} alert('Verifier le formulaire')
 	event.preventDefault();
 })
+
 // click function
 $('table').delegate('button.del', 'click', function(){
 
