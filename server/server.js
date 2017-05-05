@@ -74,6 +74,7 @@ app.post('/customers', function(req, res){
 	
 	AddData(dbCustomers, req);
 
+
 });
 
 app.get('/customer/getAll', function(req, res){
@@ -162,13 +163,18 @@ function AddData(dir,req){
 		nodefs.readFile(dir,function(err,data)
 		{
 		 	obj= JSON.parse(data);
-		 	if(err)throw err;		
+		 	if(err){
+		 		res.send("error");
+		 	}		
 		 	obj.push(addCustomer);
 			json=JSON.stringify(obj);
 		 	nodefs.writeFile(dir,json, function(err)
 		 	{
-		 		if(err) throw err;
-		 	});
+		 		if(err) {
+		 			res.send("error");
+		 	} else {
+		 		res.send("success");
+		 	}
 		});
 	}, function(errors){
 		console.log(errors);
