@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Produits</title>
+	<link rel="stylesheet" type="text/css" href="css/produits.css">
+	<script type="text/javascript" src="../node_modules/ckeditor/ckeditor.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.8/css/theme.default.min.css" integrity="sha256-kZJ4kB78IbXuxMtCpmaXzii8vxEKtu8pjicH62E0/qM=" crossorigin="anonymous" />	
+</head>
+<body>
+
+	<!-- HEADER -->
+	
+	<ul>
+		<li><img src="../Admin.ico"></></li>
+		<li><a href="../partie_clients/clients.html">CLIENTS</a></li>
+		<li><a href="../partie_produits/produits.html">PRODUITS</a></li>
+		<li><a href="../partie_commandes/commandes.html">COMMANDES</a></li>
+	</ul>
+	<!-- FORMULAIRE -->
+
+	<h2>FORMULAIRE PRODUITS</h2>
+
+	<form action="/products" method="POST">
+	   <div>
+	      <label for="name">Nom</label>
+	      <input id="name" type="text" name="name"></input>
+	   
+	      <label for="price">Prix</label>
+	      <input id="price" type="number" name="price"></input>
+
+	      <label for="stock">Stock</label>
+	      <input id="stock" type="number" name="stock"></input>
+	   </div>
+
+	   <div>
+	      <label for="place">Lieu</label>
+	      <input id="place" type="text" name="place"></input>
+
+	      <label for="description">Description</label>
+	      <input for="description" type="text" name="description"></input>
+
+	      <label for="size">Taille</label>
+	      <input id="size" type="text" name="size"></input>
+
+	   </div>
+
+       <div>
+          <label for="weight">Poids</label>
+          <input for="weight" type="text" name="weight"></input>
+
+          <label for="ref">Référence</label>
+          <input  type="text" name="ref"></input>
+
+          <button type="submit">ENREGISTRER PRODUITS</button>
+       </div>
+    </form>
+
+    <table id="produitsTable" class="tablesorter">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Lieu</th>
+				<th>Poids</th>
+				<th>Prix</th>
+				<th>Description</th>
+				<th>Référence</th>
+				<th>Stock</th>
+				<th>Taille</th>
+			</tr>	
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+    <form action="/products" method="POST">
+
+   		<textarea cols="80" class="ckeditor" id="editeur" name="editeur" rows="10"></textarea>
+
+    </form>
+
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+
+	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
+
+	<script type="text/javascript" src="../node_modules/validator/validator.min.js"></script>
+
+
+	<script type="text/javascript" src="js/produits.js"></script>
+
+
+</body>
+</html>
