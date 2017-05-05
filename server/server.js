@@ -79,9 +79,9 @@ app.post('/customers', function(req, res){
 
 app.get('/customer/getAll', function(req, res){
 	nodefs.readFile('customers.json',function read(err,data){
-	 		 	if(err) throw err;
-	 		 	data=data;
-		 res.send(data);
+	 	if(err) throw err;
+	 		data=data;
+		res.send(data);
 	 });
 });
 
@@ -131,8 +131,8 @@ app.post('/orders', function(req, res){
 
 app.get('/orders/getAll', function(req, res){
 	nodefs.readFile('orders.json',function read(err,data){
-	 		 	if(err) throw err;
-	 		 	data=data;
+	 	if(err) throw err;
+	 		data=data;
 		 res.send(data);
 	 });
 });
@@ -154,7 +154,7 @@ function AddData(dir,req){
 	req.checkBody('birthdate', 'Invalid birthdate').notEmpty();
 	req.checkBody('city', 'Invalid city').notEmpty();
 	req.checkBody('zipCode', 'Invalid zipCode').notEmpty();
-//	req.checkBody('address', 'Invalid address').notEmpty();
+	req.checkBody('address', 'Invalid address').notEmpty();
 	req.checkBody('phoneNumber', 'Invalid phoneNumber').notEmpty();
 
 
@@ -172,30 +172,35 @@ function AddData(dir,req){
 			"zipCode": data.zipCode,
 			"address" : data.address,
 			"phoneNumber" : data.phoneNumber,
-//			"registrationDate" : now.format('MMMM Do YYYY'),
+			"registrationDate" : now.format('MMMM Do YYYY'),
 			"_id" : uuidV4(),
-		 };
-		 console.log(addCustomer._id);
+		}
+
 		nodefs.readFile(dir,function(err,data)
 		{
 		 	obj= JSON.parse(data);
-		 	if(err){
+		 	if(err)
+		 	{
 		 		res.send("error");
-		 	}		
+		 	}	
 		 	obj.push(addCustomer);
 			json=JSON.stringify(obj);
 		 	nodefs.writeFile(dir,json, function(err)
 		 	{
 		 		if(err) {
-		 			res.send("error");
-		 	} else {
-		 		res.send("success");
-		 	}
-		});
-	}, function(errors){
+		 			res.send(error);
+		 		}
+		 	 	else {
+		 			res.send(success);
+		 		}
+			})
+		}, function(errors){
 		console.log(errors);
+		});
 	});
 }
+
+
 function AddDataOrders(dir,req){
 	var data = req.body;
 	var addOrders= {
