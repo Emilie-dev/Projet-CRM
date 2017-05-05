@@ -74,6 +74,7 @@ app.post('/customers', function(req, res){
 	
 	AddData(dbCustomers, req);
 
+
 });
 
 app.get('/customer/getAll', function(req, res){
@@ -87,7 +88,7 @@ app.get('/customer/getAll', function(req, res){
 app.post('/customers/update', function(req, res){
 	var add= req.body.db;
 	UpdateData(dbCustomers, add);
-	res.send('/customers/update');
+	
 });
 
 
@@ -115,6 +116,13 @@ app.post('/products/update', function(){
 	UpdateData(dbProduct, add);
 
 });
+
+//route delete/suppr clients
+app.post('/customers/delete', function(req, res){
+	res.send('/customers/delete');
+});
+
+
 
 //route Orders
 app.post('/orders', function(req, res){
@@ -171,13 +179,18 @@ function AddData(dir,req){
 		nodefs.readFile(dir,function(err,data)
 		{
 		 	obj= JSON.parse(data);
-		 	if(err)throw err;		
+		 	if(err){
+		 		res.send("error");
+		 	}		
 		 	obj.push(addCustomer);
 			json=JSON.stringify(obj);
 		 	nodefs.writeFile(dir,json, function(err)
 		 	{
-		 		if(err) throw err;
-		 	});
+		 		if(err) {
+		 			res.send("error");
+		 	} else {
+		 		res.send("success");
+		 	}
 		});
 	}, function(errors){
 		console.log(errors);
@@ -238,8 +251,13 @@ function AddDataProducts(dir,req){
 
 function UpdateData(dir, add){
  	 nodefs.writeFile(dir,add, function(err){
-	  	if(err) throw err;
+	  	if(err){
+	  		res.send('error')
+	  	} 
+	  	else{
+	  		res.send('success')
+	  	}
 	 }); 	
 	
-	}
+}
 
