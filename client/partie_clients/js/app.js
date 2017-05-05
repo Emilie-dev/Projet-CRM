@@ -128,33 +128,31 @@ function verifPhoneNumber(champ) {
    }  
 }
 
-function verifForm(f){
 
-   var genderOk = verifGender(f.gender);
-   var firstNameOk = verifFirstName(f.firstName);
-   var nameOk = verifName(f.name);
-   var cityOk = verifCity(f.city);
-   var addressOk = verifAdress(f.address);
-   var birthDateOk = verifBirthdate(f.birthdate);
-   var zipCodeOk = verifZipCode(f.zipCode);
-   var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
 
-   if( firstNameOk && nameOk && birthdateOk)
-      return true;
-   else
-   {
-      alert("Veuillez remplir correctement tous les champs");
-      return false;
+function verifForm(event){
+   var errors= {};
+
+   if(validator.isEmpty("" + $('#gender').val())){
+      errors.gender ="rater";
    }
+
+
+   
+
+   return {errors: errors, isValid : $.isEmptyObject(errors)}; 
+
+
 }
 
-$("submit").on( 'click',function (event) {
-   event.preventDefault();
-   verifForm();
-   if(true){
-      alert("Votre client viens d'être enregistrer dans la base de données");
-      $('form input').val("");
-   } alert('Verifier le formulaire');
+$("button").on( 'click',function (event) {
+
+   var resultValid =  verifForm();
+   console.log(resultValid);
+   if(! resultValid.isValid){
+      event.preventDefault();
+      //afficher les message derreur
+   }
 
 });
 
@@ -184,7 +182,16 @@ function delObject(nbr){
       data:{
          db: JSON.stringify(customers)
       }
+
+   }).done(function(data) {
+      console.log(data);
+      if ( data ) {
+         alert("Success!");
+      }else{
+         alert("Error!");      
+      }
    });
+
 
 }
 
@@ -193,6 +200,10 @@ $(function(){
    $("#customerTable").tablesorter();
 });
 
+
+
+
+
 var customers=[];
 
 function recept(){
@@ -200,6 +211,7 @@ function recept(){
       url:"/customer/getAll",
       
       success : function(data){
+
       console.log(data);
       }
    })
@@ -214,6 +226,7 @@ function recept(){
 function load(tab){
 
    $('tbody').html(' ');
+
 	for (i=0;i<tab.length;i++){
 
 		$('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><img src="../res/poubelle.png" class="sup" data-ind="'+i+'"/></td><td><img src="../res/modifier.png" class="edt" data-ind="'+i+'"></img></td></tr>');
@@ -226,6 +239,7 @@ function load(tab){
          
 
       });	
+
 }
 
 $(document).ready(function(){

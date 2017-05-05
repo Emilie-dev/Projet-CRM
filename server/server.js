@@ -3,11 +3,12 @@ var express = require('express');
 var app = express();
 
 
-var faker = require('faker');
+//var momentjs = require('moment');
+var faker = require('faker/locale/fr');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
-
+var uuidV4 = require('uuid/v4');
 
 
 
@@ -24,8 +25,8 @@ app.listen(3000, function(){
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
-app.use(expressValidator());
-app.use(bodyparser.json());
+app.use(expressValidator())
+app.use(bodyparser.json())
 
 
 
@@ -72,27 +73,33 @@ res.send(fakeCustomers);
 app.post('/customers', function(req, res){
 	
 	AddData(dbCustomers, req);
-	res.status(200).end();
+
 
 });
 
 app.get('/customer/getAll', function(req, res){
 	nodefs.readFile('customers.json',function read(err,data){
-	 		 	if(err) throw err;
-	 		 	data=data;
-		 res.send(data);
+	 	if(err) throw err;
+	 		data=data;
+		res.send(data);
 	 });
 });
 
 app.post('/customers/update', function(req, res){
 	var add= req.body.db;
 	UpdateData(dbCustomers, add);
-	res.send('/customers/update');
+	
 });
+
+
+app.get('/customers/delete', function(req, res) {
+	
+});
+
+
 //route produits
 app.post('/products', function(req, res){
-			AddDataProducts(dbProducts,req);
-			res.end();
+			AddDataProducts(dbProducts,req)
 });
 
 
@@ -110,6 +117,13 @@ app.post('/products/update', function(){
 
 });
 
+//route delete/suppr clients
+app.post('/customers/delete', function(req, res){
+	res.send('/customers/delete');
+});
+
+
+
 //route Orders
 app.post('/orders', function(req, res){
 	AddDataOrders(dbOrders,req);
@@ -117,8 +131,8 @@ app.post('/orders', function(req, res){
 
 app.get('/orders/getAll', function(req, res){
 	nodefs.readFile('orders.json',function read(err,data){
-	 		 	if(err) throw err;
-	 		 	data=data;
+	 	if(err) throw err;
+	 		data=data;
 		 res.send(data);
 	 });
 });
@@ -140,14 +154,13 @@ function AddData(dir,req){
 	req.checkBody('birthdate', 'Invalid birthdate').notEmpty();
 	req.checkBody('city', 'Invalid city').notEmpty();
 	req.checkBody('zipCode', 'Invalid zipCode').notEmpty();
-//	req.checkBody('address', 'Invalid address').notEmpty();
+	req.checkBody('address', 'Invalid address').notEmpty();
 	req.checkBody('phoneNumber', 'Invalid phoneNumber').notEmpty();
 
 
 	req.asyncValidationErrors().then(function(){
 	
 		var data = req.body;
-		var dateNow = new Date().getTime();
 
 		var addCustomer= 
 		{
@@ -159,23 +172,35 @@ function AddData(dir,req){
 			"zipCode": data.zipCode,
 			"address" : data.address,
 			"phoneNumber" : data.phoneNumber,
-			"registrationDate" : dateNow
-		 };
+			"registrationDate" : now.format('MMMM Do YYYY'),
+			"_id" : uuidV4(),
+		}
+
 		nodefs.readFile(dir,function(err,data)
 		{
 		 	obj= JSON.parse(data);
-		 	if(err)throw err;		
+		 	if(err)
+		 	{
+		 		res.send("error");
+		 	}	
 		 	obj.push(addCustomer);
 			json=JSON.stringify(obj);
 		 	nodefs.writeFile(dir,json, function(err)
 		 	{
-		 		if(err) throw err;
-		 	});
-		});
-	}, function(errors){
+		 		if(err) {
+		 			res.send(error);
+		 		}
+		 	 	else {
+		 			res.send(success);
+		 		}
+			})
+		}, function(errors){
 		console.log(errors);
+		});
 	});
 }
+
+
 function AddDataOrders(dir,req){
 	var data = req.body;
 	var addOrders= {
@@ -213,6 +238,7 @@ function AddDataProducts(dir,req){
 		"height": data.height,
 		"weight" : data.weight,
 		"ref" : data.ref,
+		"richText": data.richText,
 	 	};
 	 nodefs.readFile(dir,function(err,data){
 
@@ -220,7 +246,7 @@ function AddDataProducts(dir,req){
 
 	 	products= JSON.parse(data);
 	 	if(err)throw err;		
-	 	products.push(addProducts);
+	 product.push(addProducts);
 		json=JSON.stringify(products);
 	 nodefs.writeFile(dir,json, function(err){
 	 	if(err) throw err;
@@ -230,7 +256,12 @@ function AddDataProducts(dir,req){
 
 function UpdateData(dir, add){
  	 nodefs.writeFile(dir,add, function(err){
-	  	if(err) throw err;
+	  	if(err){
+	  		res.send('error')
+	  	} 
+	  	else{
+	  		res.send('success')
+	  	}
 	 }); 	
 	
-	}
+}
