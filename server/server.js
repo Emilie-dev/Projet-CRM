@@ -88,7 +88,7 @@ app.get('/customer/getAll', function(req, res){
 app.post('/customers/update', function(req, res){
 	var add= req.body.db;
 	UpdateData(dbCustomers, add);
-	res.send('/customers/update');
+	
 });
 //route produits
 app.post('/products', function(req, res){
@@ -242,8 +242,13 @@ function AddDataProducts(dir,req){
 
 function UpdateData(dir, add){
  	 nodefs.writeFile(dir,add, function(err){
-	  	if(err) throw err;
+	  	if(err){
+	  		res.send('error')
+	  	} 
+	  	else{
+	  		res.send('success')
+	  	}
 	 }); 	
 	
-	}
+}
 
