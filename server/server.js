@@ -8,7 +8,7 @@ var faker = require('faker/locale/fr');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
 var expressValidator = require('express-validator');
-
+var uuidV4 = require('uuid/v4');
 
 
 
@@ -77,7 +77,7 @@ app.post('/customers', function(req, res){
 });
 
 app.get('/customer/getAll', function(req, res){
-	fs.readFile('customers.json',function read(err,data){
+	nodefs.readFile('customers.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
@@ -89,6 +89,13 @@ app.post('/customers/update', function(req, res){
 	UpdateData(dbCustomers, add);
 	res.send('/customers/update');
 });
+
+
+app.get('/customers/delete', function(req, res) {
+	
+});
+
+
 //route produits
 app.post('/products', function(req, res){
 			AddDataProducts(dbProducts,req)
@@ -96,7 +103,7 @@ app.post('/products', function(req, res){
 
 
 app.get('/products/getAll', function(req, res){
-	fs.readFile('products.json',function read(err,data){
+	nodefs.readFile('products.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
@@ -115,7 +122,7 @@ app.post('/orders', function(req, res){
 });
 
 app.get('/orders/getAll', function(req, res){
-	fs.readFile('orders.json',function read(err,data){
+	nodefs.readFile('orders.json',function read(err,data){
 	 		 	if(err) throw err;
 	 		 	data=data;
 		 res.send(data);
@@ -158,7 +165,9 @@ function AddData(dir,req){
 			"address" : data.address,
 			"phoneNumber" : data.phoneNumber,
 //			"registrationDate" : now.format('MMMM Do YYYY'),
+			"_id" : uuidV4(),
 		 };
+		 console.log(addCustomer._id);
 		nodefs.readFile(dir,function(err,data)
 		{
 		 	obj= JSON.parse(data);
