@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 
 
-var momentjs = require('moment');
+//var momentjs = require('moment');
 var faker = require('faker/locale/fr');
 var nodefs = require('fs');
 var bodyparser = require('body-parser');
@@ -25,8 +25,8 @@ app.listen(3000, function(){
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyparser.urlencoded({ extended: false }));
-app.use(expressValidator())
-app.use(bodyparser.json())
+app.use(expressValidator());
+app.use(bodyparser.json());
 
 
 
@@ -72,7 +72,8 @@ res.send(fakeCustomers);
 
 app.post('/customers', function(req, res){
 	
-	AddData(dbCustomers, req);
+	AddData(dbCustomers, req, res);
+
 
 
 });
@@ -87,7 +88,7 @@ app.get('/customer/getAll', function(req, res){
 
 app.post('/customers/update', function(req, res){
 	var add= req.body.db;
-	UpdateData(dbCustomers, add);
+	UpdateData(dbCustomers, add, res);
 	
 });
 
@@ -146,7 +147,7 @@ app.post('/orders/update', function(req, res){
 // function Customers
 // fs.readFile sert a parcourir le fichier contenant la base client,
 // fs.writeFile sert a réecrire le fichier.
-function AddData(dir,req){
+function AddData(dir,req, res){
 
 	req.checkBody('gender', 'Invalid gender').notEmpty();
 	req.checkBody('name', 'Invalid name').notEmpty();
@@ -154,7 +155,7 @@ function AddData(dir,req){
 	req.checkBody('birthdate', 'Invalid birthdate').notEmpty();
 	req.checkBody('city', 'Invalid city').notEmpty();
 	req.checkBody('zipCode', 'Invalid zipCode').notEmpty();
-	req.checkBody('address', 'Invalid address').notEmpty();
+	//req.checkBody('address', 'Invalid address').notEmpty();
 	req.checkBody('phoneNumber', 'Invalid phoneNumber').notEmpty();
 
 
@@ -172,7 +173,7 @@ function AddData(dir,req){
 			"zipCode": data.zipCode,
 			"address" : data.address,
 			"phoneNumber" : data.phoneNumber,
-			"registrationDate" : now.format('MMMM Do YYYY'),
+			"registrationDate" : Math.round(new Date().getTime()/1000.0),
 			"_id" : uuidV4(),
 		}
 
@@ -182,22 +183,24 @@ function AddData(dir,req){
 		 	if(err)
 		 	{
 		 		res.send("error");
-		 	}	
+		 	}
 		 	obj.push(addCustomer);
 			json=JSON.stringify(obj);
 		 	nodefs.writeFile(dir,json, function(err)
 		 	{
-		 		if(err) {
-		 			res.send(error);
+		 		if(err){
+		 			res.send('error');
+		 		
 		 		}
 		 	 	else {
-		 			res.send(success);
+		 			res.send('success');
 		 		}
-			})
-		}, function(errors){
-		console.log(errors);
+			});
 		});
+	}, function(errors){
+		console.log(errors);
 	});
+		 	
 }
 
 
@@ -254,13 +257,13 @@ function AddDataProducts(dir,req){
 	 });
 	}
 
-function UpdateData(dir, add){
+function UpdateData(dir, add, res){
  	 nodefs.writeFile(dir,add, function(err){
 	  	if(err){
-	  		res.send('error')
+	  		res.send('error');
 	  	} 
 	  	else{
-	  		res.send('success')
+	  		res.send('success');
 	  	}
 	 }); 	
 	

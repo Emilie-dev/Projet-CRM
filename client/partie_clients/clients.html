@@ -62,7 +62,7 @@
 			<label for="phoneNumber">N°TEL</label>
 			<input id="phoneNumber" type="text" name="phoneNumber" onblur="verifPhoneNumber(this)" />
 		
-			<button type="submit">ENREGISTRER CLIENT</button>
+			<button type="submit" method="post" onsubmit="event.preventDefault()">ENREGISTRER CLIENT</button>
 		</div>
 	</form>
 
