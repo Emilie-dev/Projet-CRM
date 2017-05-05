@@ -178,7 +178,7 @@ $("button").on( 'click',function (event) {
    console.log(resultValid);
    if(! resultValid.isValid){
       event.preventDefault();
-      //afficher les message derreur
+      alert("veuillez verifier tout les champs")
    }
 
 
