@@ -28,18 +28,19 @@
 			<label for="gender">TITRE</label>
 			<input id="gender" type="text" name="gender" onblur="verifGender(this)" />
 
-			<label for="firstName">PRENOM</label>
+			<label for="firtName">PRENOM</label>
 			<input id="firstName" type="" name="firstName" onblur="verifFirstName(this)" />
 
 			<label for="name">NOM</label>
+
 			<input id="name" type="text" name="name" onblur="verifName(this)" />
 
 		</div>
 
 		<div>
 			<label for="city">VILLE</label>
-			<input id="city" type="text" name="city" onblur="verifCity(this)"/>
 
+			<input id="city" type="text" name="city" onblur="verifCity(this)"/>
 
 
 			<label for="address">ADRESSE</label>
@@ -57,12 +58,16 @@
 		<div>
 
 			<label for="zipCode">CODE POSTAL</label>
+
 			<input id="zipCode" type="text" name="zipCode" onblur="verifZipCode(this)" />
 
 			<label for="phoneNumber">N°TEL</label>
 			<input id="phoneNumber" type="text" name="phoneNumber" onblur="verifPhoneNumber(this)" />
+
 		
-			<button type="submit">ENREGISTRER CLIENT</button>
+			<button class ="validate" type="submit">ENREGISTRER CLIENT</button>
+			<button class = "edit" type= "submit">MODIFIER CLIENT</button>
+
 		</div>
 	</form>
 
@@ -91,7 +96,7 @@
 
 	</footer>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 	
 	<script type="text/javascript" src="../node_modules/moment/moment.js"></script>
 	

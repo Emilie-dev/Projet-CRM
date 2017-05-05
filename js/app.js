@@ -127,59 +127,36 @@ function verifPhoneNumber(champ) {
 
    }  
 }
-function verifForm(event){
-  var errors= {};
 
-  if(validator.isEmpty("" + $('#gender').val())){
-     errors.gender ="error";
-  }
-   
-   if(validator.isEmpty("" + $('#firstName').val())){
-     errors.gender ="error";
-  }
+function verifForm(f){
 
-  if(validator.isEmpty("" + $('#name').val())){
-     errors.gender ="error";
-  }
+   var genderOk = verifGender(f.gender);
+   var firstNameOk = verifFirstName(f.firstName);
+   var nameOk = verifName(f.name);
+   var cityOk = verifCity(f.city);
+   var addressOk = verifAdress(f.address);
+   var birthDateOk = verifBirthdate(f.birthdate);
+   var zipCodeOk = verifZipCode(f.zipCode);
+   var phoneNumberOk = verifPhoneNumber(f.phoneNumber);
 
-
-  if(validator.isEmpty("" + $('#city').val())){
-     errors.gender ="error";
-  }
-   
-   if(validator.isEmpty("" + $('#address').val())){
-     errors.gender ="error";
-  }
-
-
-   if(validator.isEmpty("" + $('#birthdate').val())){
-     errors.gender ="error";
-  }
-
-  if(validator.isEmpty("" + $('#zipCode').val())){
-     errors.gender ="error";
-  }
-
-   if(validator.isEmpty("" + $('#phoneNumber').val())){
-     errors.gender ="error";
-  }
-   
-
-  return {errors: errors, isValid : $.isEmptyObject(errors)};
-
-
+   if( firstNameOk && nameOk && birthdateOk)
+      return true;
+   else
+   {
+      alert("Veuillez remplir correctement tous les champs");
+      return false;
+   }
 }
 
-   
+$("submit").on( 'click',function (event) {
+   event.preventDefault();
+   verifForm();
+   if(true){
+      alert("Votre client viens d'être enregistrer dans la base de données");
+      $('form input').val("");
+   } alert('Verifier le formulaire');
 
-$("button").on( 'click',function (event) {
-
-   var resultValid =  verifForm();
-   console.log(resultValid);
-   if(! resultValid.isValid){
-      event.preventDefault();
-      //afficher les message derreur
-   }
+});
 
 
 function getObject(){
@@ -207,24 +184,14 @@ function delObject(nbr){
       data:{
          db: JSON.stringify(customers)
       }
-      }).done(function(data) {
-      console.log(data);
-      if ( data ) {
-         alert("Success!");
-      }else{
-         alert("Error!");      
-      }
    });
+
 }
 
 
 $(function(){
    $("#customerTable").tablesorter();
 });
-
-
-
-
 
 var customers=[];
 
@@ -233,6 +200,7 @@ function recept(){
       url:"/customer/getAll",
       
       success : function(data){
+      console.log(data);
       }
    })
    .done(function(data){
@@ -246,24 +214,28 @@ function recept(){
 function load(tab){
 
    $('tbody').html(' ');
-
 	for (i=0;i<tab.length;i++){
-
 		$('tbody').append('<tr><td>'+tab[i].gender+'</td><td>'+tab[i].firstName+'</td><td>'+tab[i].name+'</td><td>'+tab[i].city+'</td><td>'+tab[i].address+'</td><td>'+tab[i].birthdate+'</td><td>'+tab[i].registrationDate+'</td><td>'+tab[i].zipCode+'</td><td>'+tab[i].phoneNumber+'</td><td><img src="../res/poubelle.png" class="sup" data-ind="'+i+'"/></td><td><img src="../res/modifier.png" class="edt" data-ind="'+i+'"></img></td></tr>');
-   }
+		}
 
- $('.sup').on('click', function(){
-   var indAsup= $(this).data('ind');
-   delObject(indAsup);
-   recept();         
-});	
+      $('.sup').on('click', function(){
+         var indAsup= $(this).data('ind');
+         delObject(indAsup);
+         recept();
+         
 
+      });	
 }
 
 $(document).ready(function(){
    recept();
+      
+
    $('tbody').delegate('.edt','click',function(){
+
       var customersEdit = $(this).data('ind');
+
+
       $(".validate").css("display","none");
       $(".edit").css("display","inline-block");
       $("#gender").val(customers[customersEdit].gender);
@@ -274,10 +246,12 @@ $(document).ready(function(){
       $("#zipCode").val(customers[customersEdit].zipCode);
       $("#address").val(customers[customersEdit].address);
       $("#phoneNumber").val(customers[customersEdit].phoneNumber);
+
    });
+
    $(".edit").click(function(e){
-      e.preventDefault();
-      var customersUpdate ={
+         e.preventDefault();
+         var customersUpdate ={
             "gender": $("#gender").val(),
             "name": $("#name").val(),
             "firstName": $("#firstName").val(),
@@ -300,5 +274,8 @@ $(document).ready(function(){
                      }
                   } 
                });
-   }) ;
+   });
 });
+
+
+
