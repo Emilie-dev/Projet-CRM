@@ -4,19 +4,19 @@
 	<meta charset="utf-8">
 	<title>CRM</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" href="../node_modules/tablesorter/dist/css/theme.default.min.css">	
+	<link rel="stylesheet" href="../node_modules/tablesorter/dist/css/theme.default.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.8/css/theme.default.min.css" integrity="sha256-kZJ4kB78IbXuxMtCpmaXzii8vxEKtu8pjicH62E0/qM=" crossorigin="anonymous" />	
 </head>
 <body>
 
 	<!-- HEADER -->
-	
 	<ul>
-		<li><img src="../Admin.ico"></></li>
-		<li><a href="#">CLIENTS</a></li>
-		<li><a href="..client/partie_produits/produits.html">PRODUITS</a></li>
-		<li><a href="..client/partie_commandes/commandes.html">COMMANDES</a></li>
+		<li><img src="../Admin.ico"></li>
+		<li><a href="../partie_clients/clients.html">CLIENTS</a></li>
+		<li><a href="../partie_produits/produits.html">PRODUITS</a></li>
+		<li><a href="../partie_commandes/commandes.html">COMMANDES</a></li>
 	</ul>
-
+	
 	<!-- FORMULAIRE -->
 	
 	<h2>FORMULAIRE A REMPLIR</h2>
@@ -40,11 +40,17 @@
 			<label for="city">VILLE</label>
 			<input id="city" type="text" name="city" onblur="verifCity(this)"/>
 
-			<label for="adress">ADRESSE</label>
-			<input id="adress" type="text" name="adress" onblur="verifAdress(this)"/>	
 
-			<label for="birthDate">NAISSANCE</label>
-			<input id="birthDate" type="text" name="birthDate" onblur="verifBirthdate(this)"/>	
+
+			<label for="address">ADRESSE</label>
+			<input id="address" type="text" name="address" onblur="verifAdress(this)"/>
+
+
+	
+
+			<label for="birthdate">NAISSANCE</label>
+			<input id="birthdate" type="text" name="birthdate" onblur="verifBirthdate(this)"/>	
+
 
 		</div>
 
@@ -72,20 +78,12 @@
 				<th>DATE D'INSCRIPTION</th>
 				<th>CODE POSTAL</th>
 				<th>N°TEL</th>
+				<th>SUPPRIMER</th>
+				<th>MODIFIER</th>
 			</tr>	
 		</thead>
 		<tbody>
-			<tr>
-				<td>a</td>
-				<td>b</td>
-				<td>c</td>
-				<td>d</td>
-				<td>e</td>
-				<td>f</td>
-				<td>g</td>
-				<td>h</td>
-				<td>i</td>
-			</tr>
+			
 		</tbody>
 	</table>
 
@@ -93,9 +91,15 @@
 
 	</footer>
 
-	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-
+	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="../node_modules/moment/moment.js"></script>
+	
 	<script type="text/javascript" src="../node_modules/tablesorter/dist/js/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="../node_modules/validator/validator.js"></script>
+
+
+
 
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
