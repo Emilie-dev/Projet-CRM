@@ -127,38 +127,59 @@ function verifPhoneNumber(champ) {
 
    }  
 }
+function verifForm(event){
+  var errors= {};
 
-function verifForm(){
+  if(validator.isEmpty("" + $('#gender').val())){
+     errors.gender ="error";
+  }
+   
+   if(validator.isEmpty("" + $('#firstName').val())){
+     errors.gender ="error";
+  }
 
-  
-   var firstNameOk = verifFirstName; 
-   var nameOk = verifName;
-   var birthDateOk = verifBirthdate;
+  if(validator.isEmpty("" + $('#name').val())){
+     errors.gender ="error";
+  }
+
+
+  if(validator.isEmpty("" + $('#city').val())){
+     errors.gender ="error";
+  }
+   
+   if(validator.isEmpty("" + $('#address').val())){
+     errors.gender ="error";
+  }
+
+
+   if(validator.isEmpty("" + $('#birthdate').val())){
+     errors.gender ="error";
+  }
+
+  if(validator.isEmpty("" + $('#zipCode').val())){
+     errors.gender ="error";
+  }
+
+   if(validator.isEmpty("" + $('#phoneNumber').val())){
+     errors.gender ="error";
+  }
    
 
-   if( firstNameOk && nameOk && birthDateOk){
-      return true;
-   }
-   else
-   {
-           alert("Veuillez remplir correctement tous les champs");
-      return false;
-   }
+  return {errors: errors, isValid : $.isEmptyObject(errors)};
+
 
 }
 
 $("button").on( 'click',function (event) {
-   console.log('button click');
-   event.preventDefault();
-   verifForm();
-   console.log(verifForm())
-   if(true){
-      alert("Votre client viens d'être enregistrer dans la base de données");
-      $('form input').val("");
-   } alert('Verifier le formulaire');
+
+  var resultValid =  verifForm();
+  console.log(resultValid);
+  if(! resultValid.isValid){
+     event.preventDefault();
+     alert("veuillez vérifiez tous les champs")
+  }
 
 });
-
 
 function getObject(){
    $.ajax({
